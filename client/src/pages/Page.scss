@@ -1,0 +1,21 @@
+.page {
+  margin: 20px;
+  height: 100%;
+  .page-contents {
+    animation: wipe 0.4s ease-in-out;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@keyframes wipe {
+  0% {
+    opacity: 0;
+    margin-top: 10px;
+  }
+
+  100% {
+    opacity: 1;
+    margin-top: 00px;
+  }
+}

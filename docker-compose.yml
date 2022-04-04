@@ -1,0 +1,43 @@
+version: "3"
+services:
+  react-app:
+    image: react-app
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    networks:
+      - mern-app
+    env_file:
+      - .env
+    volumes:
+      - ./client/src:/app/src
+    depends_on:
+      - api-server
+    tty: true
+  api-server:
+    image: api-server
+    ports:
+      - "8080:8080"
+    networks:
+      - mern-app
+    depends_on:
+      - mongo
+    env_file:
+      - .env
+    volumes:
+      - ./server:/app
+      - /app/node_modules/
+  mongo:
+    image: mongo:3.6.19-xenial
+    ports:
+      - "27017:27017"
+    networks:
+      - mern-app
+    volumes:
+      - mongo-data:/data/db
+networks:
+  mern-app:
+    driver: bridge
+volumes:
+  mongo-data:
+    driver: local
