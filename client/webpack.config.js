@@ -48,7 +48,10 @@ let webpackConfiguration = {
     historyApiFallback: true,
     port: 3000,
     proxy: {
-      "/api": `http://localhost:${process.env.PORT}`,
+      "/api": {
+        target: "http://api-server:8080",
+        secure: false,
+      },
     },
   },
 };

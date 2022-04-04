@@ -12,6 +12,6 @@ const { signInController } = require("../controllers/user/signIn.controller");
  * @route       POST /upload
  * @COMMENTS
  */
-router.route("/signIn").post(signInController);
+router.route("/api/signIn").post(signInController);
 
 export default router;

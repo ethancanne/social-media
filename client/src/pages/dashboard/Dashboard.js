@@ -1,6 +1,7 @@
 import "./Dashboard.scss";
 import React, { useState } from "react";
 import Page from "../Page";
+import axios from "axios";
 
 /**
  * Renders the Dashboard of the application.
@@ -8,10 +9,15 @@ import Page from "../Page";
  * @date   2/13/2022
  */
 const Dashboard = props => {
+  const sendRequest = async () => {
+    const res = await axios.post("/api/signIn", {});
+
+    console.log(res);
+  };
   return (
     <Page>
       <div className='dashboard-page'>
-        <h1>Testing</h1>
+        <button onClick={sendRequest}>Send request</button>
       </div>
     </Page>
   );

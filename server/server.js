@@ -12,10 +12,6 @@ app.use(express.static(path.join(__dirname, "/build")));
 app.use(express.json());
 app.use(userRouter);
 
-app.get("/", (request, response) => {
-  response.sendFile(path.join(__dirname, "build", "index.html"));
-});
-
 const PORT = process.env.PORT;
 app.listen(PORT, error =>
   error ? console.error(error) : console.info(`Listening on port ${PORT}.`)
