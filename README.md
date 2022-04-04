@@ -1,8 +1,7 @@
 # Social Media Application
 
 ---
-
-Run `make build` from root to build containers
-Run `make run` from root to run containers with docker-compose
-
+Make sure Docker Desktop is installed on your system: https://docs.docker.com/desktop/windows/install/
+Clone the repository
+Run `docker-compose up` from root to build and run containers
 ---
