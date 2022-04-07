@@ -1,11 +1,77 @@
+@import "../globals.scss";
 .page {
-  margin: 20px;
   height: 100%;
-  .page-contents {
-    animation: wipe 0.4s ease-in-out;
+  display: flex;
+  // margin: 20px;
+  // border-radius: 30px;
+  border: white solid 5px;
+  box-shadow: rgba(149, 157, 165, 0.342) 0px 8px 24px inset;
+  .side-bar {
+    flex: 1;
+    max-width: 300px;
     height: 100%;
-    width: 100%;
+    background-color: white;
+    box-shadow: rgba(64, 49, 147, 0.356) 0px 48px 100px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
   }
+
+  .side-bar-navigation {
+    flex: 1;
+    width: 100%;
+
+    h1 {
+      padding: 20px 30px 20px 30px;
+
+      font-size: 20px;
+      font-weight: 900;
+      color: $textColor;
+      margin-bottom: 10px;
+    }
+
+    .side-bar-navigation-items {
+      display: flex;
+      flex-direction: column;
+
+      .side-bar-navigation-item {
+        font-size: 15px;
+        padding: 30px;
+
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+        a {
+          color: $secondaryTextColor;
+          text-decoration: none;
+        }
+
+        &.active {
+          font-weight: 900;
+
+          box-shadow: rgba(99, 99, 157, 0.077) 0px 7px 29px 0px;
+          border-bottom: whitesmoke solid 1px;
+          a {
+            color: $textColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+.page-contents {
+  padding: 20px;
+  flex: 1;
+  animation: wipe 0.4s ease-in-out;
+  height: 100%;
+  width: 100%;
+
+  background-color: rgba(255, 255, 255, 0.749);
+
+  backdrop-filter: blur(5px);
 }
 
 @keyframes wipe {

@@ -8,6 +8,8 @@ import Dashboard from "./pages/dashboard/Dashboard";
 
 //Import views
 import views from "./views/Views";
+import Authenticate from "./pages/authenticate/Authenticate";
+import Profile from "./pages/profile/Profile";
 
 //Import Models
 
@@ -20,13 +22,18 @@ const App = props => {
   return (
     <Router>
       <div className='app'>
-        <div className=''>
-          <Switch>
-            <Route exact path='/'>
-              <Dashboard />
-            </Route>
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path='/'>
+            {/* {isLoggedIn() ? <Dashboard /> : <Authenticate />} */}
+            <Authenticate />
+          </Route>
+          <Route exact path='/dashboard'>
+            <Dashboard />
+          </Route>
+          <Route exact path='/profile'>
+            <Profile />
+          </Route>
+        </Switch>
       </div>
     </Router>
   );

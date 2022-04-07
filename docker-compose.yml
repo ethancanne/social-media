@@ -13,6 +13,7 @@ services:
       - .env
     volumes:
       - ./client/src:/app/src
+      - ./server/routers/routes.js:/app/routes.js
     depends_on:
       - api-server
     tty: true

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Logo from "../components/Logo/Logo";
 import "./Page.scss";
 
 /**
@@ -10,9 +11,31 @@ import "./Page.scss";
 const Page = props => {
   return (
     <div className='page'>
-      <Link to='/' style={{ textDecoration: "none", color: "black" }}>
-        <h1>Social Media</h1>
-      </Link>
+      {props.showSideBar && (
+        <div className='side-bar'>
+          <Link to='/' style={{ textDecoration: "none", color: "black" }}>
+            <div className='side-bar-header'>
+              <Logo />
+            </div>
+          </Link>
+
+          <div className='side-bar-navigation'>
+            <h1>Menu</h1>
+            <div className='side-bar-navigation-items'>
+              <div className='side-bar-navigation-item active'>
+                <Link to='/'>Home</Link>
+              </div>
+
+              <div className='side-bar-navigation-item'>
+                <Link to='/'>Profile</Link>
+              </div>
+              <div className='side-bar-navigation-item'>
+                <Link to='/'>Settings</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className='page-contents'>{props.children}</div>
     </div>

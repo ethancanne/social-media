@@ -11,7 +11,6 @@ import axios from "axios";
 const Dashboard = props => {
   const sendRequest = async () => {
     const res = await axios.post("/api/signIn", {});
-
     console.log(res);
   };
   return (

@@ -1,0 +1,19 @@
+@import "../../globals.scss";
+.header-title {
+  font-size: 25px;
+  font-weight: 900;
+  height: 100px;
+  padding-top: 20px;
+  color: $accentColor;
+
+  text-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: $accentColor;
+    margin-bottom: 10px;
+  }
+}
