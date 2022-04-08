@@ -7,7 +7,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Dashboard from "./pages/dashboard/Dashboard";
 
 //Import views
-import views from "./views/Views";
+import views from "./views/views";
 import Authenticate from "./pages/authenticate/Authenticate";
 import Profile from "./pages/profile/Profile";
 

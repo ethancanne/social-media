@@ -8,10 +8,10 @@ import "./Page.scss";
  * @author  Ethan Cannelongo
  * @date   02/13/2022
  */
-const Page = props => {
+const Page = ({ showSideBar = true, children }) => {
   return (
     <div className='page'>
-      {props.showSideBar && (
+      {showSideBar && (
         <div className='side-bar'>
           <Link to='/' style={{ textDecoration: "none", color: "black" }}>
             <div className='side-bar-header'>
@@ -37,7 +37,7 @@ const Page = props => {
         </div>
       )}
 
-      <div className='page-contents'>{props.children}</div>
+      <div className='page-contents'>{children}</div>
     </div>
   );
 };

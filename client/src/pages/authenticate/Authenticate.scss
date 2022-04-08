@@ -8,17 +8,18 @@
 
   .auth-form {
     background-color: white;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: rgba(64, 49, 147, 0.072) 0px 48px 100px 0px;
 
     display: flex;
     flex-direction: column;
 
+    animation: floatRight 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
     // padding: 40px;
 
     height: 70%;
-    width: 70%;
-
+    width: 600px;
     .auth-form-header {
       display: flex;
       align-items: center;
@@ -28,5 +29,41 @@
       .auth-logo {
       }
     }
+
+    .auth-view-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 20px;
+
+      &.sign-up {
+        animation: floatRight 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+      }
+      &.sign-in {
+        animation: floatLeft 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+      }
+    }
+  }
+}
+
+@keyframes floatRight {
+  0% {
+    transform: translatex(-300px) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translatex(0px) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes floatLeft {
+  0% {
+    transform: translatex(300px) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translatex(0px) scale(1);
+    opacity: 1;
   }
 }
