@@ -13,11 +13,11 @@ const SignUp = ({ setShowingAuthView }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-  const submitSignUp = e => {
+  const submitSignUp = async e => {
     e.preventDefault();
     try {
-      const res = axios.post(Routes.User.SignUp, {});
-    } catch {}
+      const res = await axios.post(Routes.User.SignUp, { email, password, confirmPassword });
+    } catch { }
   };
   return (
     <>
@@ -26,6 +26,14 @@ const SignUp = ({ setShowingAuthView }) => {
           onChange={e => setEmail(e.target.value)}
           value={email}
           label='Email'
+          variant='standard'
+          color='secondary'
+        />
+        <TextField
+          onChange={e => setPassword(e.target.value)}
+          type="password"
+          value={password}
+          label='Password'
           variant='standard'
           color='secondary'
         />
