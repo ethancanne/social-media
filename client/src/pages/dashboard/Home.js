@@ -1,6 +1,6 @@
-import "./Dashboard.scss";
+import "./Home.scss";
 import React, { useState } from "react";
-import Page from "../Page";
+import { Page, pages } from "../Page";
 import axios from "axios";
 
 /**
@@ -8,18 +8,19 @@ import axios from "axios";
  * @author  Ethan Cannelongo
  * @date   2/13/2022
  */
-const Dashboard = props => {
+const Home = props => {
   const sendRequest = async () => {
     const res = await axios.post("/api/signIn", {});
     console.log(res);
   };
   return (
-    <Page>
-      <div className='dashboard-page'>
+    <Page currentPage={pages.HOME}>
+      <div className='home-page'>
+        <h1>Home</h1>
         <button onClick={sendRequest}>Send request</button>
       </div>
     </Page>
   );
 };
 
-export default Dashboard;
+export default Home;

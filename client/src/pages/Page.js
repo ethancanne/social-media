@@ -8,7 +8,7 @@ import "./Page.scss";
  * @author  Ethan Cannelongo
  * @date   02/13/2022
  */
-const Page = ({ showSideBar = true, children }) => {
+export const Page = ({ showSideBar = true, children, currentPage }) => {
   return (
     <div className='page'>
       {showSideBar && (
@@ -22,16 +22,34 @@ const Page = ({ showSideBar = true, children }) => {
           <div className='side-bar-navigation'>
             <h1>Menu</h1>
             <div className='side-bar-navigation-items'>
-              <div className='side-bar-navigation-item active'>
-                <Link to='/'>Home</Link>
-              </div>
+              <Link
+                to='/dashboard'
+                className={
+                  currentPage == pages.HOME
+                    ? "side-bar-navigation-item active"
+                    : "side-bar-navigation-item"
+                }>
+                Home
+              </Link>
 
-              <div className='side-bar-navigation-item'>
-                <Link to='/'>Profile</Link>
-              </div>
-              <div className='side-bar-navigation-item'>
-                <Link to='/'>Settings</Link>
-              </div>
+              <Link
+                to={"/profile"}
+                className={
+                  currentPage == pages.PROFILE
+                    ? "side-bar-navigation-item active"
+                    : "side-bar-navigation-item"
+                }>
+                Profile
+              </Link>
+              <Link
+                to='/settings'
+                className={
+                  currentPage == pages.SETTINGS
+                    ? "side-bar-navigation-item active"
+                    : "side-bar-navigation-item"
+                }>
+                Settings
+              </Link>
             </div>
           </div>
         </div>
@@ -42,4 +60,8 @@ const Page = ({ showSideBar = true, children }) => {
   );
 };
 
-export default Page;
+export const pages = {
+  HOME: "home",
+  PROFILE: "profile",
+  SETTINGS: "settings",
+};

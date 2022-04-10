@@ -17,7 +17,6 @@
     flex-direction: column;
     align-items: center;
     padding-top: 10px;
-    animation: slideInRight 1s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 
   .side-bar-navigation {
@@ -36,28 +35,34 @@
     .side-bar-navigation-items {
       display: flex;
       flex-direction: column;
+      overflow: visible;
 
       .side-bar-navigation-item {
         font-size: 15px;
         padding: 30px;
-
+        font-weight: 300;
         margin-bottom: 10px;
         cursor: pointer;
-        transition: all 0.2s ease-in-out;
 
-        a {
-          color: $secondaryTextColor;
-          text-decoration: none;
+        color: $secondaryTextColor;
+        text-decoration: none;
+        height: 100%;
+        width: 100%;
+        transition: all 0.5s;
+
+        &:hover {
+          box-shadow: rgba(99, 99, 157, 0.027) 0px 7px 29px 0px;
         }
 
+        &:active {
+          box-shadow: rgba(99, 99, 157, 0.069) 0px 7px 29px 0px;
+        }
         &.active {
+          color: $textColor;
           font-weight: 900;
-
           box-shadow: rgba(99, 99, 157, 0.077) 0px 7px 29px 0px;
-          border-bottom: whitesmoke solid 1px;
-          a {
-            color: $textColor;
-          }
+          border-right: $accentColor 5px solid;
+          animation: select 0.2s ease-in-out;
         }
       }
     }
@@ -71,15 +76,29 @@
   width: 100%;
   background-color: rgba(255, 255, 255, 0.749);
   backdrop-filter: blur(5px);
+  animation: slideInRight 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 @keyframes slideInRight {
   0% {
-    transform: translatex(-300px);
-    opacity: 0;
+    margin-right: 100px;
   }
   100% {
-    transform: translatex(0px);
-    opacity: 1;
+    margin-right: 0;
+  }
+}
+
+@keyframes select {
+  0% {
+    border-right-width: 0px;
+    color: $secondaryTextColor;
+    font-weight: 300;
+    box-shadow: rgba(99, 99, 157, 0) 0px 7px 29px 0px;
+  }
+  100% {
+    border-right-width: 5px;
+    color: $textColor;
+    font-weight: 900;
+    box-shadow: rgba(99, 99, 157, 0.077) 0px 7px 29px 0px;
   }
 }

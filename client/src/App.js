@@ -12,12 +12,13 @@ import {
 import userContext from "./context/user/userContext";
 
 //Import Pages
-import Dashboard from "./pages/dashboard/Dashboard";
+import Home from "./pages/dashboard/Home";
 
 //Import views
 import views from "./views/views";
 import Authenticate from "./pages/authenticate/Authenticate";
 import Profile from "./pages/profile/Profile";
+import Settings from "./pages/settings/Settings";
 
 //Import Models
 
@@ -36,13 +37,16 @@ const App = props => {
       <div className='app'>
         <Switch>
           <Route exact path='/'>
-            {isLoggedIn ? <Dashboard /> : <Authenticate />}
+            {isLoggedIn ? <Home /> : <Authenticate />}
           </Route>
-          <Route exact path='/dashboard'>
-            <Dashboard />
+          <Route exact path='/home'>
+            <Home />
           </Route>
           <Route exact path='/profile'>
             <Profile />
+          </Route>
+          <Route exact path='/settings'>
+            <Settings />
           </Route>
           <Route path='*'>
             <Redirect to={"/"} />

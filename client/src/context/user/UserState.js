@@ -10,7 +10,7 @@ const UserState = props => {
   const initialState = {
     user: {},
     token: [],
-    isLoggedIn: false,
+    isLoggedIn: localStorage.getItem("isLoggedIn") || false,
     loading: false,
   };
 
@@ -27,7 +27,7 @@ const UserState = props => {
     console.log(email, password);
 
     try {
-      const res = await axios.post(Routes.User.SignIn, { email, password });
+      // const res = await axios.post(Routes.User.SignIn, { email, password });
       dispatch({
         type: userConstants.SIGN_IN,
         payload: {},
@@ -37,10 +37,10 @@ const UserState = props => {
     }
 
     //Save to local storage
-    const loggedInUser = res.data.user;
-    loggedInUser.token = res.data.token;
+    // const loggedInUser = res.data.user;
+    // loggedInUser.token = res.data.token;
 
-    localStorage.setItem("user", JSON.stringify(res.data.user));
+    // localStorage.setItem("user", JSON.stringify(res.data.user));
     localStorage.setItem("isLoggedIn", true);
   };
 

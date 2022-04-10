@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import SignUp from "../../views/auth/signUp/SignUp";
 import SignIn from "../../views/auth/signIn/SignIn";
 
-import Page from "../Page";
+import { Page } from "../Page";
 import Logo from "../../components/Logo/Logo";
 import views from "../../views/views";
 

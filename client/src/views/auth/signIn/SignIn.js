@@ -19,13 +19,16 @@ const SignIn = ({ setShowingAuthView }) => {
     e.preventDefault();
     try {
       await signIn(email, password);
-    } catch {}
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <>
-      <form onSubmit={submitSignIn}>
+      <form>
         <TextField
           onChange={e => setEmail(e.target.value)}
+          type={"email"}
           value={email}
           label='Email'
           variant='standard'
@@ -39,7 +42,9 @@ const SignIn = ({ setShowingAuthView }) => {
           variant='standard'
           color='secondary'
         />
-        <Button variant='text'>Sign In</Button>
+        <Button variant='text' onClick={submitSignIn}>
+          Sign In
+        </Button>
       </form>
 
       <Button
