@@ -1,19 +1,24 @@
 import "./SignIn.scss";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import Routes from "../../../../routes";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import views from "../../views";
 
+//Import Context
+import userContext from "../../../context/user/userContext";
+
 const SignIn = ({ setShowingAuthView }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const submitSignIn = e => {
+  const { signIn } = useContext(userContext);
+
+  const submitSignIn = async e => {
     e.preventDefault();
     try {
-      const res = axios.post(Routes.User.SignUp, {});
+      await signIn(email, password);
     } catch {}
   };
   return (
@@ -26,7 +31,17 @@ const SignIn = ({ setShowingAuthView }) => {
           variant='standard'
           color='secondary'
         />
-        <Button variant='text'>Sign In</Button>
+        <TextField
+          onChange={e => setPassword(e.target.value)}
+          value={password}
+          label='Password'
+          variant='standard'
+          color='secondary'
+          type='password'
+        />
+        <Button variant='text' onClick={submitSignIn}>
+          Sign In
+        </Button>
       </form>
 
       <Button

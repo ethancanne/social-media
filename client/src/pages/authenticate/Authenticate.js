@@ -41,6 +41,7 @@ const Authenticate = () => {
         <div className='auth-form'>
           <div className='auth-form-header'>
             <Logo nameOfClass='auth-logo' />
+            <h1 className='auth-title'>{showingAuthView}</h1>
           </div>
           {getAuthView()}
         </div>

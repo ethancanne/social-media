@@ -1,7 +1,15 @@
 import "./App.scss";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "regenerator-runtime/runtime.js";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+
+//Import Context
+import userContext from "./context/user/userContext";
 
 //Import Pages
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -19,19 +27,25 @@ import Profile from "./pages/profile/Profile";
  * @date   1/30/2022
  */
 const App = props => {
+  const [user, setUser] = useState(null);
+  const { isLoggedIn } = useContext(userContext);
+
+  console.log(isLoggedIn);
   return (
     <Router>
       <div className='app'>
         <Switch>
           <Route exact path='/'>
-            {/* {isLoggedIn() ? <Dashboard /> : <Authenticate />} */}
-            <Authenticate />
+            {isLoggedIn ? <Dashboard /> : <Authenticate />}
           </Route>
           <Route exact path='/dashboard'>
             <Dashboard />
           </Route>
           <Route exact path='/profile'>
             <Profile />
+          </Route>
+          <Route path='*'>
+            <Redirect to={"/"} />
           </Route>
         </Switch>
       </div>

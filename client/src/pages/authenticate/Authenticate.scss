@@ -1,3 +1,4 @@
+@import "../../globals.scss";
 .authenticate-page {
   display: flex;
   align-items: center;
@@ -18,15 +19,22 @@
 
     // padding: 40px;
 
-    height: 70%;
+    height: 80%;
     width: 600px;
     .auth-form-header {
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
       width: 100%;
       padding-top: 20px;
-      .auth-logo {
+
+      .auth-title {
+        font-size: 20px;
+        text-decoration: solid;
+        color: $secondaryTextColor;
+        font-weight: bold;
+        height: 90px;
       }
     }
 
@@ -35,6 +43,22 @@
       flex-direction: column;
       height: 100%;
       padding: 20px;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        // align-items: center;
+
+        height: 100%;
+        padding: 50px;
+        margin: 0 40px;
+
+        > * {
+          margin-bottom: 20px;
+        }
+      }
 
       &.sign-up {
         animation: floatRight 1s cubic-bezier(0.075, 0.82, 0.165, 1);
