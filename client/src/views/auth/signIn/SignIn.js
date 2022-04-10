@@ -33,15 +33,13 @@ const SignIn = ({ setShowingAuthView }) => {
         />
         <TextField
           onChange={e => setPassword(e.target.value)}
+          type='password'
           value={password}
           label='Password'
           variant='standard'
           color='secondary'
-          type='password'
         />
-        <Button variant='text' onClick={submitSignIn}>
-          Sign In
-        </Button>
+        <Button variant='text'>Sign In</Button>
       </form>
 
       <Button

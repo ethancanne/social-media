@@ -12,6 +12,15 @@ export default (state, action) => {
         loading: false,
       };
 
+    case userConstants.SIGN_OUT:
+      return {
+        ...state,
+        user: "",
+        token: "",
+        isLoggedIn: false,
+        loading: false,
+      };
+
     case userConstants.SET_LOADING:
       return {
         ...state,
