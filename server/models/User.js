@@ -1,9 +1,10 @@
 //create a mongoose model for the user
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const jwt = require("jsonwebtoken");
 
 const userSchema = new Schema({
-  username: {
+  fullName: {
     type: String,
     required: true,
     unique: true,
@@ -46,6 +47,31 @@ const userSchema = new Schema({
   ],
 });
 
-const User = mongoose.model("User", userSchema);
+userSchema.methods.verifyPassword = password => {
+  return this.password === password;
+};
 
-module.exports = User;
+userSchema.methods.removeSensitiveAttributes = () => {
+  delete this.password;
+};
+
+userSchema.statics.generateToken = () => {
+  //Generate token using jwt
+  const token = jwt.sign(
+    {
+      _id: this._id,
+      fullName: this.fullName,
+      email: this.email,
+      profilePicture: this.profilePicture,
+      bio: this.bio,
+    },
+    process.env.TOKEN_SECRET,
+    {
+      expiresIn: "1h",
+    }
+  );
+
+  return token;
+};
+
+export const User = mongoose.model("User", userSchema);

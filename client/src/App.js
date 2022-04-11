@@ -37,7 +37,7 @@ const App = props => {
       <div className='app'>
         <Switch>
           <Route exact path='/'>
-            {isLoggedIn ? <Home /> : <Authenticate />}
+            {isLoggedIn ? <Redirect to={"/home"} /> : <Authenticate />}
           </Route>
           <Route exact path='/home'>
             <Home />

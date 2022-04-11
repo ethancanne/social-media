@@ -13,6 +13,7 @@ connectDb();
 
 app.use(express.static(path.join(__dirname, "/build")));
 app.use(express.json());
+
 app.use(userRouter);
 
 const PORT = process.env.PORT;
