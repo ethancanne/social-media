@@ -21,16 +21,37 @@ const UserState = props => {
   //Set Loading
   const setLoading = () => dispatch({ type: userConstants.SET_LOADING });
 
-  //Set User
+  //Sign In
   const signIn = async (email, password) => {
     setLoading();
     console.log(email, password);
 
     try {
-      // const res = await axios.post(Routes.User.SignIn, { email, password });
+      const res = await axios.post(Routes.User.SignIn, { email, password });
+      const user = res.data.user;
+      const token = res.data.token;
       dispatch({
         type: userConstants.SIGN_IN,
-        payload: {},
+        payload: { user, token },
+      });
+    } catch {
+      throw "ERROR";
+    }
+  }
+
+  //Add User
+  const signUp = async (firstName, lastName, email, password, confirmPassword) => {
+    setLoading();
+    console.log(firstName, lastName, email, password, confirmPassword);
+
+    try {
+      if (password !== confirmPassword) throw "ERROR";
+      const res = await axios.post(Routes.User.SignUp, { firstName, lastName, email, password, confirmPassword });
+      const user = res.data.user;
+      const token = res.data.token;
+      dispatch({
+        type: userConstants.SIGN_IN,
+        payload: { user, token },
       });
     } catch {
       throw "ERROR";

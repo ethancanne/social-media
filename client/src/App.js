@@ -12,7 +12,7 @@ import {
 import userContext from "./context/user/userContext";
 
 //Import Pages
-import Home from "./pages/dashboard/Home";
+import Home from "./pages/home/Home";
 
 //Import views
 import views from "./views/views";
