@@ -11,7 +11,7 @@ const Profile = props => {
 
   const retrieveUser = async () => {
     const id = props.match.params.id;
-    getProfile(id, props.user);
+    getProfile(id);
   };
 
   return (

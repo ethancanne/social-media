@@ -55,7 +55,7 @@ userSchema.methods.removeSensitiveAttributes = () => {
   delete this.password;
 };
 
-userSchema.statics.generateToken = () => {
+userSchema.methods.generateToken = () => {
   //Generate token using jwt
   const token = jwt.sign(
     {

@@ -22,13 +22,46 @@ const UserState = props => {
   //Set Loading
   const setLoading = () => dispatch({ type: userConstants.SET_LOADING });
 
-  //Set User
+  //Sign In
   const signIn = async (email, password) => {
     setLoading();
     console.log(email, password);
 
     try {
       const res = await axios.post(Routes.User.SignIn, { email, password });
+      const user = res.data.user;
+      const token = res.data.token;
+      dispatch({
+        type: userConstants.SIGN_IN,
+        payload: { user, token },
+      });
+    } catch {
+      throw "ERROR";
+    }
+  };
+
+  //Add User
+  const signUp = async (
+    firstName,
+    lastName,
+    email,
+    password,
+    confirmPassword
+  ) => {
+    setLoading();
+    console.log(firstName, lastName, email, password, confirmPassword);
+
+    try {
+      if (password !== confirmPassword) throw "ERROR";
+      const res = await axios.post(Routes.User.SignUp, {
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword,
+      });
+      const user = res.data.user;
+      const token = res.data.token;
       dispatch({
         type: userConstants.SIGN_IN,
         payload: { user, token },
@@ -56,20 +89,13 @@ const UserState = props => {
   const getProfile = async (id, loggedInUser = undefined) => {
     setLoading();
     try {
-      if (!loggedInUser) {
-        const res = await axios.post(Routes.User.GetProfile, { id });
-        const { user } = res.data;
+      const res = await axios.post(Routes.User.GetProfile, { id });
+      const { user } = res.data;
 
-        dispatch({
-          type: userConstants.GET_PROFILE,
-          payload: { user },
-        });
-      } else {
-        dispatch({
-          type: userConstants.GET_PROFILE,
-          payload: { loggedInUser },
-        });
-      }
+      dispatch({
+        type: userConstants.GET_PROFILE,
+        payload: { user },
+      });
     } catch {
       throw "ERROR";
     }

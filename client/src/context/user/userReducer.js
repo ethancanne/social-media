@@ -21,11 +21,25 @@ export default (state, action) => {
         loading: false,
       };
 
+    case userConstants.GET_PROFILE:
+      return {
+        ...state,
+        showingUserProfile: {
+          name: "ethan",
+          email: "",
+          bio: "",
+          followers: [],
+          following: [],
+        },
+        loading: false,
+      };
+
     case userConstants.SET_LOADING:
       return {
         ...state,
         loading: true,
       };
+
     default:
       return state;
   }
