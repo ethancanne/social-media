@@ -1,12 +1,23 @@
 import "./Profile.scss";
-import React from "react";
+import React, { useContext } from "react";
 import { Page, pages } from "../Page";
 
-const Profile = () => {
+const Profile = props => {
+  const { getProfile, showingUserProfile, isLoading } = useContext(userContext);
+
+  useEffect(() => {
+    retrieveUser();
+  }, []);
+
+  const retrieveUser = async () => {
+    const id = props.match.params.id;
+    getProfile(id, props.user);
+  };
+
   return (
     <Page currentPage={pages.PROFILE}>
       <div className='profile-page'>
-        <h1>Profile</h1>
+        <h1>{showingUserProfile}</h1>
       </div>
     </Page>
   );

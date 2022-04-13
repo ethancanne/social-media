@@ -12,6 +12,7 @@ const UserState = props => {
     token: [],
     isLoggedIn: localStorage.getItem("isLoggedIn") || false,
     loading: false,
+    showingUserProfile: {},
   };
 
   const [state, dispatch] = useReducer(userReducer, initialState);
@@ -27,10 +28,10 @@ const UserState = props => {
     console.log(email, password);
 
     try {
-      // const res = await axios.post(Routes.User.SignIn, { email, password });
+      const res = await axios.post(Routes.User.SignIn, { email, password });
       dispatch({
         type: userConstants.SIGN_IN,
-        payload: {},
+        payload: { user, token },
       });
     } catch {
       throw "ERROR";
@@ -52,15 +53,39 @@ const UserState = props => {
     dispatch({ type: userConstants.SIGN_OUT });
   };
 
+  const getProfile = async (id, loggedInUser = undefined) => {
+    setLoading();
+    try {
+      if (!loggedInUser) {
+        const res = await axios.post(Routes.User.GetProfile, { id });
+        const { user } = res.data;
+
+        dispatch({
+          type: userConstants.GET_PROFILE,
+          payload: { user },
+        });
+      } else {
+        dispatch({
+          type: userConstants.GET_PROFILE,
+          payload: { loggedInUser },
+        });
+      }
+    } catch {
+      throw "ERROR";
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
         user: state.user,
         token: state.token,
         isLoggedIn: state.isLoggedIn,
+        showingUserProfile: state.showingUserProfile,
         loading: state.loading,
         signIn: signIn,
         signOut: signOut,
+        getProfile: getProfile,
       }}>
       {props.children}
     </UserContext.Provider>

@@ -12,7 +12,7 @@ import {
 import userContext from "./context/user/userContext";
 
 //Import Pages
-import Home from "./pages/dashboard/Home";
+import Home from "./pages/home/Home";
 
 //Import views
 import views from "./views/views";
@@ -31,7 +31,12 @@ const App = props => {
   const [user, setUser] = useState(null);
   const { isLoggedIn } = useContext(userContext);
 
-  console.log(isLoggedIn);
+  useEffect(() => {
+    updateAuthenticationToken();
+  }, []);
+
+  const updateAuthenticationToken = async () => {};
+
   return (
     <Router>
       <div className='app'>
@@ -42,9 +47,18 @@ const App = props => {
           <Route exact path='/home'>
             <Home />
           </Route>
-          <Route exact path='/profile'>
-            <Profile />
-          </Route>
+          <Route
+            path='/profile/:id'
+            render={props => {
+              return isLoggedIn ? (
+                <>
+                  <Profile {...props} />
+                </>
+              ) : (
+                <Redirect to={"/"} />
+              );
+            }}
+          />
           <Route exact path='/settings'>
             <Settings />
           </Route>
