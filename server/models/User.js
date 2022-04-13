@@ -4,7 +4,12 @@ const Schema = mongoose.Schema;
 const jwt = require("jsonwebtoken");
 
 const userSchema = new Schema({
-  fullName: {
+  firstName: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  lastName: {
     type: String,
     required: true,
     unique: true,
@@ -47,7 +52,7 @@ const userSchema = new Schema({
   ],
 });
 
-userSchema.methods.verifyPassword = password => {
+userSchema.methods.verifyPassword = (password) => {
   return this.password === password;
 };
 

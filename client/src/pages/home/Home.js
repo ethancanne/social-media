@@ -2,6 +2,7 @@ import "./Home.scss";
 import React, { useState } from "react";
 import { Page, pages } from "../Page";
 import axios from "axios";
+import Posts from "../../views/posts/Posts"
 
 /**
  * Renders the Dashboard of the application.
@@ -16,8 +17,7 @@ const Home = props => {
   return (
     <Page currentPage={pages.HOME}>
       <div className='home-page'>
-        <h1>Home</h1>
-        <button onClick={sendRequest}>Send request</button>
+        <Posts />
       </div>
     </Page>
   );
