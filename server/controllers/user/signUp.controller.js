@@ -18,5 +18,6 @@ export const signUpController = asyncHandler(async (req, res) => {
     newUser.save();
 
     const token = newUser.generateToken();
+    return req.send(newUser, token);
   }
 });
