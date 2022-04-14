@@ -54,8 +54,10 @@ userSchema.methods.verifyPassword = function (password) {
   return this.password === password;
 };
 
-userSchema.methods.removeSensitiveAttributes = function () {
-  delete this.password;
+userSchema.methods.toJSON = function () {
+  var userObject = this.toObject();
+  delete userObject.password;
+  return userObject;
 };
 
 userSchema.methods.generateToken = function () {
@@ -70,5 +72,12 @@ userSchema.methods.generateToken = function () {
 
   return token;
 };
+
+//Populate posts and followers, and following and remove sensitive data
+userSchema.pre("find", function () {
+  // this.populate('posts');
+  // this.populate('followers');
+  // this.populate('following');
+});
 
 export const User = mongoose.model("User", userSchema);

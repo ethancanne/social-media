@@ -8,23 +8,21 @@ import { User } from "../../models/User";
  */
 export const signInController = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
+  const errors = [];
 
   try {
     //Grab the user record from the database
     const user = await User.findOne({ email });
-
-    //TODO: Verify the password from the request body and verify it matches the password in the database
+    if (!user) throw "User with this email does not exist";
+    //Verify the password from the request body and verify it matches the password in the database
     const passwordIsCorrect = user.verifyPassword(password);
+    if (!passwordIsCorrect) throw "Password is incorrect";
 
-    //Remove sensitive data from the user object
-    user.removeSensitiveAttributes();
+    //Create a token for the user
+    const token = user.generateToken();
 
-    //If the password is correct, create a token for the user
-    if (passwordIsCorrect) {
-      const token = user.generateToken();
-      //Send the token and user to the client
-      return res.send({ user, token });
-    }
+    //Send the user and token to the client
+    return res.send({ user, token });
   } catch (err) {
     console.log(err);
     //Send errors

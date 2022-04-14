@@ -1,22 +1,49 @@
 import express from "express";
+//import the user controller
+import { signInController } from "../controllers/user/signIn.controller";
 import { signUpController } from "../controllers/user/signUp.controller";
-import routes from "./routes";
+import { getUserController } from "../controllers/user/getUser.controller";
+import { getAllUsersController } from "../controllers/user/getAllUsers.controller";
+
 //create an express router for the user routes
 const router = express.Router();
+import routes from "./routes";
 
 //import the auth middleware
 const { authenticate } = require("../middleware/auth.middleware");
-//import the user controller
-const { signInController } = require("../controllers/user/signIn.controller");
 
 /**
- * @description Upload video route
+ * @description Sign In User Route
  * @access      Public
- * @route       POST /upload
+ * @route       POST /api/signIn
  * @COMMENTS
  */
 router.route(routes.User.SignIn).post(signInController);
 
+/**
+ * @description Sign Up User Route
+ * @access      Public
+ * @route       POST /api/signUp
+ * @COMMENTS
+ */
 router.route(routes.User.SignUp).post(signUpController);
+
+/**
+ * @description Get All Users Route
+ * @access      Public
+ * @route       POST /api/getUser/:id
+ * @protected
+ * @COMMENTS
+ */
+router.route(routes.User.GetAllUsers).get(authenticate, getAllUsersController);
+
+/**
+ * @description Get User Route
+ * @access      Public
+ * @route       POST /api/getUser/:id
+ * @protected
+ * @COMMENTS
+ */
+router.route(routes.User.GetUser).get(authenticate, getUserController);
 
 export default router;
