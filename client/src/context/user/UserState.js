@@ -66,16 +66,14 @@ const UserState = props => {
         type: userConstants.SIGN_IN,
         payload: { user, token },
       });
-    } catch {
-      throw "ERROR";
+
+      //Save to local storage
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
+      localStorage.setItem("isLoggedIn", true);
+    } catch (err) {
+      throw err;
     }
-
-    //Save to local storage
-    // const loggedInUser = res.data.user;
-    // loggedInUser.token = res.data.token;
-
-    // localStorage.setItem("user", JSON.stringify(res.data.user));
-    localStorage.setItem("isLoggedIn", true);
   };
 
   //Sign the user out
@@ -110,6 +108,7 @@ const UserState = props => {
         showingUserProfile: state.showingUserProfile,
         loading: state.loading,
         signIn: signIn,
+        signUp: signUp,
         signOut: signOut,
         getProfile: getProfile,
       }}>

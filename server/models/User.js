@@ -7,12 +7,10 @@ const userSchema = new Schema({
   firstName: {
     type: String,
     required: true,
-    unique: true,
   },
   lastName: {
     type: String,
     required: true,
-    unique: true,
   },
   password: {
     type: String,
@@ -52,27 +50,21 @@ const userSchema = new Schema({
   ],
 });
 
-userSchema.methods.verifyPassword = (password) => {
+userSchema.methods.verifyPassword = function (password) {
   return this.password === password;
 };
 
-userSchema.methods.removeSensitiveAttributes = () => {
+userSchema.methods.removeSensitiveAttributes = function () {
   delete this.password;
 };
 
-userSchema.methods.generateToken = () => {
-  //Generate token using jwt
+userSchema.methods.generateToken = function () {
+  const user = this;
   const token = jwt.sign(
-    {
-      _id: this._id,
-      fullName: this.fullName,
-      email: this.email,
-      profilePicture: this.profilePicture,
-      bio: this.bio,
-    },
+    { _id: user._id.toString() },
     process.env.TOKEN_SECRET,
     {
-      expiresIn: "1h",
+      expiresIn: "7 days",
     }
   );
 

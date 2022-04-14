@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import User from "../../models/User";
+import { User } from "../../models/User";
 
 /**
  * @description
@@ -7,17 +7,29 @@ import User from "../../models/User";
  * @route      POST /signIn
  */
 export const signInController = asyncHandler(async (req, res) => {
-  //Grab the user record from the database
-  const user = await User.findOne({ email: req.body.email });
+  const { email, password } = req.body;
 
-  //TODO: Verify the password from the request body and verify it matches the password in the database
-  const passwordIsCorrect = user.verifyPassword(req.body.password);
-  //If the password is correct, create a token for the user
-  user.removeSensitiveAttributes();
+  try {
+    //Grab the user record from the database
+    const user = await User.findOne({ email });
 
-  if (passwordIsCorrect) {
-    const token = User.generateToken();
-    //Send the token to the client
-    return res.send({ newUser, token });
+    //TODO: Verify the password from the request body and verify it matches the password in the database
+    const passwordIsCorrect = user.verifyPassword(password);
+
+    //Remove sensitive data from the user object
+    user.removeSensitiveAttributes();
+
+    //If the password is correct, create a token for the user
+    if (passwordIsCorrect) {
+      const token = user.generateToken();
+      //Send the token and user to the client
+      return res.send({ user, token });
+    }
+  } catch (err) {
+    console.log(err);
+    //Send errors
+    return res.status(400).send({
+      error: err,
+    });
   }
 });
