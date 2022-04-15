@@ -1,15 +1,16 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useContext } from "react";
 import axios from "axios";
 import userReducer from "./userReducer";
-import UserContext from "./userContext";
+import userContext from "./userContext";
+
 import Routes from "../../../routes.js";
 
 import { userConstants } from "../constants";
 
 const UserState = props => {
   const initialState = {
-    user: {},
-    token: [],
+    user: JSON.parse(localStorage.getItem("user")) || {},
+    token: localStorage.getItem("token") || "",
     isLoggedIn: localStorage.getItem("isLoggedIn") || false,
     loading: false,
     showingUserProfile: {},
@@ -29,14 +30,24 @@ const UserState = props => {
 
     try {
       const res = await axios.post(Routes.User.SignIn, { email, password });
+      if (res.data.error) throw res.data.error;
+
       const user = res.data.user;
       const token = res.data.token;
       dispatch({
         type: userConstants.SIGN_IN,
         payload: { user, token },
       });
-    } catch {
-      throw "ERROR";
+
+      //Save to local storage
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
+      localStorage.setItem("isLoggedIn", true);
+
+      //Return message for the notification
+      return res.data.message;
+    } catch (err) {
+      throw err;
     }
   };
 
@@ -60,6 +71,10 @@ const UserState = props => {
         password,
         confirmPassword,
       });
+      console.log(res.data);
+
+      if (res.data.error) throw res.data.error;
+
       const user = res.data.user;
       const token = res.data.token;
       dispatch({
@@ -71,6 +86,9 @@ const UserState = props => {
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", token);
       localStorage.setItem("isLoggedIn", true);
+
+      //Return message for the notification
+      return res.data.message;
     } catch (err) {
       throw err;
     }
@@ -80,27 +98,32 @@ const UserState = props => {
   const signOut = () => {
     setLoading();
     localStorage.removeItem("user");
-    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("token");
+    localStorage.setItem("isLoggedIn", false);
     dispatch({ type: userConstants.SIGN_OUT });
   };
 
-  const getProfile = async (id, loggedInUser = undefined) => {
+  const getProfile = async id => {
     setLoading();
     try {
-      const res = await axios.post(Routes.User.GetProfile, { id });
-      const { user } = res.data;
+      const res = await axios.get(Routes.User.GetUser + "/" + id);
+      if (res.data.error) throw res.data.error;
+
+      const user = res.data.user;
 
       dispatch({
         type: userConstants.GET_PROFILE,
         payload: { user },
       });
-    } catch {
-      throw "ERROR";
+
+      return res.data.message;
+    } catch (err) {
+      throw err;
     }
   };
 
   return (
-    <UserContext.Provider
+    <userContext.Provider
       value={{
         user: state.user,
         token: state.token,
@@ -113,7 +136,7 @@ const UserState = props => {
         getProfile: getProfile,
       }}>
       {props.children}
-    </UserContext.Provider>
+    </userContext.Provider>
   );
 };
 

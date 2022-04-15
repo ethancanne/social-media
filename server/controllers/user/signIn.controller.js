@@ -22,11 +22,11 @@ export const signInController = asyncHandler(async (req, res) => {
     const token = user.generateToken();
 
     //Send the user and token to the client
-    return res.send({ user, token });
+    return res.send({ user, token, message: "User signed in successfully!" });
   } catch (err) {
     console.log(err);
     //Send errors
-    return res.status(400).send({
+    return res.send({
       error: err,
     });
   }

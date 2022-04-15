@@ -19,6 +19,7 @@ import views from "./views/views";
 import Authenticate from "./pages/authenticate/Authenticate";
 import Profile from "./pages/profile/Profile";
 import Settings from "./pages/settings/Settings";
+import Notification from "./views/notification/Notification";
 
 //Import Models
 
@@ -40,12 +41,13 @@ const App = props => {
   return (
     <Router>
       <div className='app'>
+        <Notification />
         <Switch>
           <Route exact path='/'>
             {isLoggedIn ? <Redirect to={"/home"} /> : <Authenticate />}
           </Route>
           <Route exact path='/home'>
-            <Home />
+            {isLoggedIn ? <Home /> : <Redirect to={"/"} />}
           </Route>
           <Route
             path='/profile/:id'

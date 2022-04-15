@@ -9,7 +9,7 @@ import views from "../../views/views";
 
 const Authenticate = () => {
   const [showingAuthView, setShowingAuthView] = useState(
-    views.authenticate.SIGN_UP
+    views.authenticate.SIGN_IN
   );
 
   const getAuthView = () => {

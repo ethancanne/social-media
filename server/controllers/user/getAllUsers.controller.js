@@ -16,7 +16,7 @@ export const getAllUsersController = asyncHandler(async (req, res) => {
   } catch (err) {
     console.log(err);
     //Send errors
-    return res.status(400).send({
+    return res.send({
       error: err,
     });
   }

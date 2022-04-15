@@ -17,12 +17,24 @@ const SignUp = ({ setShowingAuthView }) => {
 
   const submitSignUp = async e => {
     e.preventDefault();
-    signUp(firstName, lastName, email, password, confirmPassword);
+    try {
+      const successMsg = await signUp(
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword
+      );
+      showNotification(successMsg, notificationTypes.SUCCESS);
+    } catch (err) {
+      console.log("ERROR!!!!", err);
+      showNotification(err, notificationTypes.ERROR);
+    }
   };
   return (
     <>
       <form onSubmit={submitSignUp}>
-        <div class='sidebyside'>
+        <div className='sidebyside'>
           <TextField
             onChange={e => setFirstName(e.target.value)}
             value={firstName}
@@ -45,7 +57,7 @@ const SignUp = ({ setShowingAuthView }) => {
           variant='standard'
           color='secondary'
         />
-        <div class='sidebyside'>
+        <div className='sidebyside'>
           <TextField
             onChange={e => setPassword(e.target.value)}
             type='password'

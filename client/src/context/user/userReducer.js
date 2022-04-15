@@ -15,7 +15,7 @@ export default (state, action) => {
     case userConstants.SIGN_OUT:
       return {
         ...state,
-        user: "",
+        user: {},
         token: "",
         isLoggedIn: false,
         loading: false,
@@ -24,13 +24,7 @@ export default (state, action) => {
     case userConstants.GET_PROFILE:
       return {
         ...state,
-        showingUserProfile: {
-          name: "ethan",
-          email: "",
-          bio: "",
-          followers: [],
-          following: [],
-        },
+        showingUserProfile: action.payload.user,
         loading: false,
       };
 

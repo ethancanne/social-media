@@ -8,19 +8,24 @@ import views from "../../views";
 
 //Import Context
 import userContext from "../../../context/user/userContext";
+import notificationContext from "../../../context/notification/notificationContext";
+import { notificationTypes } from "../../notification/NotificationTypes";
 
 const SignIn = ({ setShowingAuthView }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const { signIn } = useContext(userContext);
+  const { showNotification } = useContext(notificationContext);
 
   const submitSignIn = async e => {
     e.preventDefault();
     try {
-      await signIn(email, password);
+      const successMsg = await signIn(email, password);
+      showNotification(successMsg, notificationTypes.SUCCESS);
     } catch (err) {
-      console.log(err);
+      console.log("ERROR!!!!", err);
+      showNotification(err, notificationTypes.ERROR);
     }
   };
   return (

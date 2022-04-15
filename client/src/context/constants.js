@@ -8,4 +8,7 @@ export const userConstants = {
   SET_LOADING: "SET_LOADING",
 };
 
-export const notificationConstants = {};
+export const notificationConstants = {
+  SHOW_NOTIFICATION: "SHOW_NOTIFICATION",
+  REMOVE_NOTIFICATION: "REMOVE_NOTIFICATION",
+};

@@ -12,6 +12,7 @@ export const getUserController = asyncHandler(async (req, res) => {
   const _id = req.params.id;
 
   try {
+    console.log("HERE");
     //Retrieve the user from the database
     const user = await User.findOne({ _id });
 
@@ -19,11 +20,11 @@ export const getUserController = asyncHandler(async (req, res) => {
     // const userWithoutSensitiveAttributes = user.removeSensitiveAttributes();
 
     //Send the user to the client
-    return res.send(user);
+    return res.send({ user });
   } catch (err) {
-    console.log(err);
+    console.log("ERROR: ", err);
     //Send errors
-    return res.status(400).send({
+    return res.send({
       error: err,
     });
   }

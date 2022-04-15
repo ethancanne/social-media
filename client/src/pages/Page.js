@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo/Logo";
+import userContext from "../context/user/userContext";
+import Button from "@mui/material/Button";
+
 import "./Page.scss";
 
 /**
@@ -9,6 +12,7 @@ import "./Page.scss";
  * @date   02/13/2022
  */
 export const Page = ({ showSideBar = true, children, currentPage }) => {
+  const { user, isLoggedIn, signOut } = useContext(userContext);
   return (
     <div className='page'>
       {showSideBar && (
@@ -33,7 +37,7 @@ export const Page = ({ showSideBar = true, children, currentPage }) => {
               </Link>
 
               <Link
-                to={"/profile"}
+                to={"/profile/" + user._id}
                 className={
                   currentPage == pages.PROFILE
                     ? "side-bar-navigation-item active"
@@ -51,6 +55,13 @@ export const Page = ({ showSideBar = true, children, currentPage }) => {
                 Settings
               </Link>
             </div>
+          </div>
+          <div>
+            Profile Section
+            <h1>{isLoggedIn && user.firstName}</h1>
+            <Button variant='text' onClick={signOut}>
+              Sign Out
+            </Button>
           </div>
         </div>
       )}

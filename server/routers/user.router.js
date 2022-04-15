@@ -44,6 +44,6 @@ router.route(routes.User.GetAllUsers).get(authenticate, getAllUsersController);
  * @protected
  * @COMMENTS
  */
-router.route(routes.User.GetUser).get(authenticate, getUserController);
+router.route(routes.User.GetUser + "/:id").get(authenticate, getUserController);
 
 export default router;

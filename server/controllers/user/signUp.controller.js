@@ -31,14 +31,18 @@ export const signUpController = asyncHandler(async (req, res) => {
       await newUser.save();
 
       const token = newUser.generateToken();
-      return res.send({ user: newUser, token });
+      return res.send({
+        user: newUser,
+        token,
+        message: "User created successfully!",
+      });
     } else {
       throw errors;
     }
   } catch (err) {
     console.log(err);
     //Send errors
-    return res.status(400).send({
+    return res.send({
       error: err,
     });
   }
