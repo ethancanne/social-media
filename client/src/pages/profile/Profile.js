@@ -21,7 +21,10 @@ const Profile = props => {
   return (
     <Page currentPage={pages.PROFILE}>
       <div className='profile-page'>
-        <h1>{showingUserProfile.firstName}</h1>
+        <div className='user-info-container'>
+          <img src='' alt='' className='user-info-profile-image' />
+          <p className='user-info-name'>{showingUserProfile.fullName}</p>
+        </div>
       </div>
     </Page>
   );

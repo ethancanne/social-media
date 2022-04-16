@@ -4,8 +4,7 @@
   display: flex;
   // margin: 20px;
   // border-radius: 30px;
-  border: white solid 10px;
-  box-shadow: rgba(149, 157, 165, 0.342) 0px 8px 24px inset;
+  // box-shadow: rgba(149, 157, 165, 0.6) 0px 8px 24px inset;
 
   .side-bar {
     flex: 1;
@@ -17,52 +16,100 @@
     flex-direction: column;
     align-items: center;
     padding-top: 10px;
-  }
 
-  .side-bar-navigation {
-    flex: 1;
-    width: 100%;
+    .side-bar-navigation {
+      flex: 1;
+      width: 100%;
 
-    h1 {
-      padding: 20px 30px 20px 30px;
+      h1 {
+        padding: 20px 30px 20px 30px;
 
-      font-size: 20px;
-      font-weight: 900;
-      color: $textColor;
-      margin-bottom: 10px;
-    }
-
-    .side-bar-navigation-items {
-      display: flex;
-      flex-direction: column;
-      overflow: visible;
-
-      .side-bar-navigation-item {
-        font-size: 15px;
-        padding: 30px;
-        font-weight: 300;
+        font-size: 20px;
+        font-weight: 900;
+        color: $textColor;
         margin-bottom: 10px;
-        cursor: pointer;
+      }
 
-        color: $secondaryTextColor;
-        text-decoration: none;
-        height: 100%;
+      .side-bar-navigation-items {
+        display: flex;
+        flex-direction: column;
+        overflow: visible;
+
+        .side-bar-navigation-item {
+          font-size: 15px;
+          padding: 30px;
+          font-weight: 300;
+          margin-bottom: 10px;
+          cursor: pointer;
+
+          color: $secondaryTextColor;
+          text-decoration: none;
+          height: 100%;
+          width: 100%;
+          transition: all 0.5s;
+
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          &:hover {
+            box-shadow: rgba(99, 99, 157, 0.027) 0px 7px 29px 0px;
+          }
+
+          &:active {
+            box-shadow: rgba(99, 99, 157, 0.069) 0px 7px 29px 0px;
+          }
+          &.active {
+            color: $textColor;
+            font-weight: 900;
+            box-shadow: rgba(99, 99, 157, 0.077) 0px 7px 29px 0px;
+            border-right: $accentColor 5px solid;
+            animation: select 0.2s ease-in-out;
+          }
+        }
+      }
+    }
+    .side-bar-bottom {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      h1 {
+        padding: 20px 30px 20px 30px;
+
+        font-size: 20px;
+        font-weight: 900;
+        color: $textColor;
+        margin-bottom: 10px;
+        text-align: left;
         width: 100%;
-        transition: all 0.5s;
+      }
+      .side-bar-profile-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
 
-        &:hover {
-          box-shadow: rgba(99, 99, 157, 0.027) 0px 7px 29px 0px;
-        }
-
-        &:active {
-          box-shadow: rgba(99, 99, 157, 0.069) 0px 7px 29px 0px;
-        }
-        &.active {
-          color: $textColor;
+        p {
+          padding-left: 20px;
           font-weight: 900;
-          box-shadow: rgba(99, 99, 157, 0.077) 0px 7px 29px 0px;
-          border-right: $accentColor 5px solid;
-          animation: select 0.2s ease-in-out;
+          font-size: 20px;
+        }
+        margin-bottom: 20px;
+
+        .profile-name-container {
+          display: flex;
+          flex-direction: column;
+          .profile-fullname {
+            font-size: 15px;
+            font-weight: 500;
+            color: $textColor;
+          }
+          .profile-username {
+            font-size: 15px;
+            font-weight: 300;
+            color: $secondaryTextColor;
+          }
         }
       }
     }

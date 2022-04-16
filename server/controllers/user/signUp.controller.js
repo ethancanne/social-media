@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import { User } from "../../models/User";
+import sharp from "sharp";
 
 /**
  * @description
@@ -7,7 +8,7 @@ import { User } from "../../models/User";
  * @route      POST /signUp
  */
 export const signUpController = asyncHandler(async (req, res) => {
-  const { firstName, lastName, email, password, confirmPassword } = req.body;
+  const { fullName, username, email, password, confirmPassword } = req.body;
   const errors = [];
 
   try {
@@ -21,11 +22,21 @@ export const signUpController = asyncHandler(async (req, res) => {
 
     //If there were no errors
     if (errors.length === 0) {
+      // Resize the profile picture and convert it to a png
+      const profilePicture = await sharp(req.file.buffer)
+        .png()
+        .resize(200, 200, { fit: sharp.fit.inside, withoutEnlargement: true })
+        .toBuffer();
+      // Encode the picture to base64 and store it in db
+
+      const encoded = profilePicture.toString("base64");
+
       const newUser = new User({
-        firstName,
-        lastName,
+        fullName,
+        username,
         email,
         password,
+        profilePicture: encoded,
       });
 
       await newUser.save();

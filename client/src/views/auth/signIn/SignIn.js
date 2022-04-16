@@ -36,7 +36,7 @@ const SignIn = ({ setShowingAuthView }) => {
           type={"email"}
           value={email}
           label='Email'
-          variant='standard'
+          variant='outlined'
           color='secondary'
         />
         <TextField
@@ -44,10 +44,10 @@ const SignIn = ({ setShowingAuthView }) => {
           type='password'
           value={password}
           label='Password'
-          variant='standard'
+          variant='outlined'
           color='secondary'
         />
-        <Button variant='text' onClick={submitSignIn}>
+        <Button variant='contained' color='secondary' onClick={submitSignIn}>
           Sign In
         </Button>
       </form>

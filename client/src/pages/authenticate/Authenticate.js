@@ -4,7 +4,7 @@ import SignUp from "../../views/auth/signUp/SignUp";
 import SignIn from "../../views/auth/signIn/SignIn";
 
 import { Page } from "../Page";
-import Logo from "../../components/Logo/Logo";
+import Logo from "../../components/logo/Logo";
 import views from "../../views/views";
 
 const Authenticate = () => {
@@ -40,7 +40,7 @@ const Authenticate = () => {
       <div className='authenticate-page'>
         <div className='auth-form'>
           <div className='auth-form-header'>
-            <Logo nameOfClass='auth-logo' />
+            <Logo nameOfClass='auth-logo' isLarge={true} />
             <h1 className='auth-title'>{showingAuthView}</h1>
           </div>
           {getAuthView()}

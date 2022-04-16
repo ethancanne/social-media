@@ -53,23 +53,30 @@ const UserState = props => {
 
   //Add User
   const signUp = async (
-    firstName,
-    lastName,
+    fullName,
+    username,
     email,
     password,
-    confirmPassword
+    confirmPassword,
+    profilePicture
   ) => {
     setLoading();
-    console.log(firstName, lastName, email, password, confirmPassword);
 
     try {
-      if (password !== confirmPassword) throw "ERROR";
-      const res = await axios.post(Routes.User.SignUp, {
-        firstName,
-        lastName,
-        email,
-        password,
-        confirmPassword,
+      if (password !== confirmPassword) throw "Passwords don't match.";
+
+      //Set up form data
+      const formData = new FormData();
+      formData.append("fullName", fullName);
+      formData.append("username", username);
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("confirmPassword", confirmPassword);
+      formData.append("profilePicture", profilePicture);
+      const res = await axios.post(Routes.User.SignUp, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
       console.log(res.data);
 
@@ -99,7 +106,7 @@ const UserState = props => {
     setLoading();
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    localStorage.setItem("isLoggedIn", false);
+    localStorage.removeItem("isLoggedIn");
     dispatch({ type: userConstants.SIGN_OUT });
   };
 

@@ -53,16 +53,14 @@ const App = props => {
             path='/profile/:id'
             render={props => {
               return isLoggedIn ? (
-                <>
-                  <Profile {...props} />
-                </>
+                <Profile {...props} />
               ) : (
                 <Redirect to={"/"} />
               );
             }}
           />
           <Route exact path='/settings'>
-            <Settings />
+            {isLoggedIn ? <Settings /> : <Redirect to={"/"} />}
           </Route>
           <Route path='*'>
             <Redirect to={"/"} />
