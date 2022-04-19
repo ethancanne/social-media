@@ -9,11 +9,16 @@ import { userConstants } from "../constants";
 
 const UserState = props => {
   const initialState = {
-    user: JSON.parse(localStorage.getItem("user")) || {},
+    loggedInUser: JSON.parse(localStorage.getItem("loggedInUser")) || {},
     token: localStorage.getItem("token") || "",
     isLoggedIn: localStorage.getItem("isLoggedIn") || false,
     loading: false,
-    showingUserProfile: {},
+    showingUserProfile: {
+      following: [],
+      followers: [],
+      posts: [],
+      profilePicture: "",
+    },
   };
 
   const [state, dispatch] = useReducer(userReducer, initialState);
@@ -40,7 +45,7 @@ const UserState = props => {
       });
 
       //Save to local storage
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
       localStorage.setItem("token", token);
       localStorage.setItem("isLoggedIn", true);
 
@@ -90,7 +95,7 @@ const UserState = props => {
       });
 
       //Save to local storage
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
       localStorage.setItem("token", token);
       localStorage.setItem("isLoggedIn", true);
 
@@ -104,7 +109,7 @@ const UserState = props => {
   //Sign the user out
   const signOut = () => {
     setLoading();
-    localStorage.removeItem("user");
+    localStorage.removeItem("loggedInUser");
     localStorage.removeItem("token");
     localStorage.removeItem("isLoggedIn");
     dispatch({ type: userConstants.SIGN_OUT });
@@ -132,7 +137,7 @@ const UserState = props => {
   return (
     <userContext.Provider
       value={{
-        user: state.user,
+        loggedInUser: state.loggedInUser,
         token: state.token,
         isLoggedIn: state.isLoggedIn,
         showingUserProfile: state.showingUserProfile,

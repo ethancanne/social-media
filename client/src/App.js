@@ -20,6 +20,9 @@ import Authenticate from "./pages/authenticate/Authenticate";
 import Profile from "./pages/profile/Profile";
 import Settings from "./pages/settings/Settings";
 import Notification from "./views/notification/Notification";
+import SidePage from "./pages/sidePage/SidePage";
+import pageContext from "./context/page/pageContext";
+import { Page, pages } from "./pages/Page";
 
 //Import Models
 
@@ -31,6 +34,8 @@ import Notification from "./views/notification/Notification";
 const App = props => {
   const [user, setUser] = useState(null);
   const { isLoggedIn } = useContext(userContext);
+  const { showingSidePages } = useContext(pageContext);
+  const { addSidePage } = useContext(pageContext);
 
   useEffect(() => {
     updateAuthenticationToken();
@@ -42,6 +47,13 @@ const App = props => {
     <Router>
       <div className='app'>
         <Notification />
+        {showingSidePages.map((showingSidePage, index) => (
+          <SidePage
+            key={index}
+            sidePage={showingSidePage.sidePage}
+            {...showingSidePage.props}
+          />
+        ))}
         <Switch>
           <Route exact path='/'>
             {isLoggedIn ? <Redirect to={"/home"} /> : <Authenticate />}
@@ -52,11 +64,17 @@ const App = props => {
           <Route
             path='/profile/:id'
             render={props => {
+              // if (showingSidePages.length > 0 && isLoggedIn) {
+              //   addSidePage(views.PROFILE, props);
+              // } else {
               return isLoggedIn ? (
-                <Profile {...props} />
+                <Page currentPage={pages.PROFILE}>
+                  <Profile {...props} />
+                </Page>
               ) : (
                 <Redirect to={"/"} />
               );
+              // }
             }}
           />
           <Route exact path='/settings'>

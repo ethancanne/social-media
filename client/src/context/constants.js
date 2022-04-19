@@ -8,7 +8,9 @@ export const userConstants = {
   SET_LOADING: "SET_LOADING",
 };
 
-export const notificationConstants = {
+export const pageConstants = {
   SHOW_NOTIFICATION: "SHOW_NOTIFICATION",
   REMOVE_NOTIFICATION: "REMOVE_NOTIFICATION",
+  ADD_SIDE_PAGE: "ADD_SIDE_PAGE",
+  REMOVE_SIDE_PAGE: "REMOVE_SIDE_PAGE",
 };

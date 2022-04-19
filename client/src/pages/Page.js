@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "../components/logo/Logo";
 import ProfilePicture from "../components/profilePicture/ProfilePicture";
 import userContext from "../context/user/userContext";
-import notificationContext from "../context/notification/notificationContext";
+import notificationContext from "../context/page/pageContext";
 import { notificationTypes } from "../views/notification/NotificationTypes";
 import Button from "@mui/material/Button";
 
@@ -13,6 +13,7 @@ import ProfileIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
 
 import "./Page.scss";
+import pageContext from "../context/page/pageContext";
 
 /**
  * A wrapper that should go around every page
@@ -20,8 +21,9 @@ import "./Page.scss";
  * @date   02/13/2022
  */
 export const Page = ({ showSideBar = true, children, currentPage }) => {
-  const { user, isLoggedIn, signOut } = useContext(userContext);
+  const { loggedInUser, isLoggedIn, signOut } = useContext(userContext);
   const { showNotification } = useContext(notificationContext);
+  const { showingSidePages } = useContext(pageContext);
 
   const submitSignOut = () => {
     signOut();
@@ -53,7 +55,7 @@ export const Page = ({ showSideBar = true, children, currentPage }) => {
               </Link>
 
               <Link
-                to={"/profile/" + user._id}
+                to={"/profile/" + loggedInUser._id}
                 className={
                   currentPage == pages.PROFILE
                     ? "side-bar-navigation-item active"
@@ -78,13 +80,14 @@ export const Page = ({ showSideBar = true, children, currentPage }) => {
             <h1>Account</h1>
             <div className='side-bar-profile-container'>
               <ProfilePicture
-                name={user.fullName}
-                image={user.profilePicture}
+                name={loggedInUser.fullName}
+                image={loggedInUser.profilePicture}
                 isBase64={true}
+                size={50}
               />
               <div className='profile-name-container'>
-                <p className='profile-fullname'>{user.fullName}</p>
-                <p className='profile-username'>@{user.username}</p>
+                <p className='profile-fullname'>{loggedInUser.fullName}</p>
+                <p className='profile-username'>@{loggedInUser.username}</p>
               </div>
             </div>
             <Button variant='text' onClick={submitSignOut}>
@@ -94,7 +97,14 @@ export const Page = ({ showSideBar = true, children, currentPage }) => {
         </div>
       )}
 
-      <div className='page-contents'>{children}</div>
+      <div
+        className={
+          showingSidePages.length > 0
+            ? "page-contents showing-side-page"
+            : "page-contents"
+        }>
+        {children}
+      </div>
     </div>
   );
 };

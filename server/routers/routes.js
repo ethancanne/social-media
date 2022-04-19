@@ -4,6 +4,9 @@ export default {
     SignUp: "/api/signUp",
     GetUser: "/api/getUser",
     GetAllUsers: "/api/getAllUsers",
+    AddFollower: "/api/addFollower",
+    GetFollowers: "/api/getFollowers",
+    GetFollowing: "/api/getFollowing",
   },
   Post: {
     CreatePost: "/api/createPost",

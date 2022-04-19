@@ -11,11 +11,14 @@
     max-width: 300px;
     height: 100%;
     background-color: white;
-    box-shadow: rgba(64, 49, 147, 0.356) 0px 48px 100px 0px;
+    box-shadow: rgba(64, 49, 147, 0.127) 0px 48px 100px 0px;
+    border-right: 2px solid rgba(99, 99, 157, 0.077);
+
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 10px;
+    z-index: 60;
 
     .side-bar-navigation {
       flex: 1;
@@ -117,13 +120,19 @@
 }
 
 .page-contents {
-  padding: 20px;
+  // padding: 20px;
   flex: 1;
   height: 100%;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.749);
   backdrop-filter: blur(5px);
   animation: slideInRight 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  transition: all 0.5s ease-in-out;
+
+  &.showing-side-page {
+    transform: translateX(50px);
+  }
 }
 
 @keyframes slideInRight {

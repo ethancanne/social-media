@@ -38,14 +38,12 @@ const userSchema = new Schema({
   ],
   followers: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "User",
+      user: { type: Schema.Types.ObjectId, ref: "User" },
     },
   ],
   following: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "User",
+      user: { type: Schema.Types.ObjectId, ref: "User" },
     },
   ],
 });
@@ -76,8 +74,8 @@ userSchema.methods.generateToken = function () {
 //Populate posts and followers, and following and remove sensitive data
 userSchema.pre("find", function () {
   // this.populate('posts');
-  // this.populate('followers');
-  // this.populate('following');
+  // this.populate("followers");
+  // this.populate("following");
 });
 
 export const User = mongoose.model("User", userSchema);

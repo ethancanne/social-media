@@ -5,7 +5,7 @@ import Routes from "../../../../routes";
 import userContext from "../../../context/user/userContext";
 import { styled } from "@mui/material/styles";
 
-import notificationContext from "../../../context/notification/notificationContext";
+import notificationContext from "../../../context/page/pageContext";
 import { notificationTypes } from "../../notification/NotificationTypes";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";

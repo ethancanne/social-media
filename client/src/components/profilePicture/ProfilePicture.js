@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "@mui/material/Avatar";
 
-const ProfilePicture = ({ image, name, isBase64, size = 40 }) => {
+const ProfilePicture = ({ image, name, size, isBase64 = true }) => {
   return (
     <>
       <Avatar
@@ -12,6 +12,7 @@ const ProfilePicture = ({ image, name, isBase64, size = 40 }) => {
           maxHeight: size,
           minWidth: size,
           minHeight: size,
+          border: "1px solid #e6e6e6",
         }}
       />
     </>

@@ -1,19 +1,21 @@
 //create an authentication middleware for the user routes using json web token
 import jwt from "jsonwebtoken";
+import { User } from "../models/User";
 
-export const authenticate = (req, res, next) => {
+export const authenticate = async (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
 
   if (token == null) return res.sendStatus(401);
 
-  jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
-    console.log(err);
+  try {
+    const decoded = await jwt.verify(token, process.env.TOKEN_SECRET);
 
-    if (err) return res.sendStatus(403);
-
-    req.user = user;
+    const authenticatedUser = await User.findById(decoded._id);
+    req.user = authenticatedUser;
 
     next();
-  });
+  } catch (err) {
+    return res.sendStatus(403);
+  }
 };

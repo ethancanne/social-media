@@ -6,7 +6,7 @@ export default (state, action) => {
     case userConstants.SIGN_IN:
       return {
         ...state,
-        user: action.payload.user,
+        loggedInUser: action.payload.user,
         token: action.payload.token,
         isLoggedIn: true,
         loading: false,
@@ -15,7 +15,7 @@ export default (state, action) => {
     case userConstants.SIGN_OUT:
       return {
         ...state,
-        user: {},
+        loggedInUser: {},
         token: "",
         isLoggedIn: false,
         loading: false,

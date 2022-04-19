@@ -16,9 +16,6 @@ export const getUserController = asyncHandler(async (req, res) => {
     //Retrieve the user from the database
     const user = await User.findOne({ _id });
 
-    //Remove sensitive data from the user object
-    // const userWithoutSensitiveAttributes = user.removeSensitiveAttributes();
-
     //Send the user to the client
     return res.send({ user });
   } catch (err) {

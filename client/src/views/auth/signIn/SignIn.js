@@ -8,7 +8,7 @@ import views from "../../views";
 
 //Import Context
 import userContext from "../../../context/user/userContext";
-import notificationContext from "../../../context/notification/notificationContext";
+import notificationContext from "../../../context/page/pageContext";
 import { notificationTypes } from "../../notification/NotificationTypes";
 
 const SignIn = ({ setShowingAuthView }) => {

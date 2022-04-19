@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App.js";
 import UserState from "./context/user/UserState";
-import NotificationState from "./context/notification/NotificationState";
+import PageState from "./context/page/PageState";
 import axios from "axios";
 
 axios.interceptors.request.use(config => {
@@ -13,11 +13,11 @@ axios.interceptors.request.use(config => {
 
 ReactDOM.render(
   <React.StrictMode>
-    <NotificationState>
+    <PageState>
       <UserState>
         <App />
       </UserState>
-    </NotificationState>
+    </PageState>
   </React.StrictMode>,
 
   document.getElementById("root")
