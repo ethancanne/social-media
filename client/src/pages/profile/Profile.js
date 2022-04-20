@@ -50,19 +50,32 @@ const Profile = props => {
             <p>{showingUserProfile.posts.length}</p>
           </div>
           <div className='stat-item'>
-            <h1>Followers:</h1>
-            <p>{showingUserProfile.followers.length}</p>
+            <Button
+              variant='text'
+              color='secondary'
+              className='stat-button'
+              onClick={() =>
+                addSidePage(sidePages.FOLLOWERS, {
+                  userId: showingUserProfile._id,
+                })
+              }>
+              <h1>Followers:</h1>
+              <p>{showingUserProfile.followers.length}</p>
+            </Button>
           </div>
           <div className='stat-item'>
-            <button
+            <Button
+              variant='text'
+              color='secondary'
+              className='stat-button'
               onClick={() =>
                 addSidePage(sidePages.FOLLOWING, {
                   userId: showingUserProfile._id,
                 })
               }>
-              Following:
-            </button>
-            <p>{showingUserProfile.following.length}</p>
+              <p>Following:</p>
+              <p>{showingUserProfile.following.length}</p>
+            </Button>
           </div>
         </div>
         <div className='actions-container'>
