@@ -21,6 +21,12 @@ export default (state, action) => {
         loading: false,
       };
 
+    case userConstants.UPDATE_USER:
+      return {
+        ...state,
+        loggedInUser: action.payload.user,
+        loading: false,
+      };
     case userConstants.GET_PROFILE:
       return {
         ...state,

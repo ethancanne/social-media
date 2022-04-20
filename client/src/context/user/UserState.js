@@ -115,10 +115,10 @@ const UserState = props => {
     dispatch({ type: userConstants.SIGN_OUT });
   };
 
-  const getProfile = async id => {
+  const getProfile = async username => {
     setLoading();
     try {
-      const res = await axios.get(Routes.User.GetUser + "/" + id);
+      const res = await axios.get(Routes.User.GetUser + "/" + username);
       if (res.data.error) throw res.data.error;
 
       const user = res.data.user;
@@ -127,6 +127,25 @@ const UserState = props => {
         type: userConstants.GET_PROFILE,
         payload: { user },
       });
+
+      return res.data.message;
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  const addFollower = async id => {
+    setLoading();
+    try {
+      const res = await axios.post(Routes.User.AddFollower + "/" + id);
+      if (res.data.error) throw res.data.error;
+
+      dispatch({
+        type: userConstants.UPDATE_USER,
+        payload: { user: res.data.user },
+      });
+
+      localStorage.setItem("loggedInUser", JSON.stringify(res.data.user));
 
       return res.data.message;
     } catch (err) {
@@ -146,6 +165,7 @@ const UserState = props => {
         signUp: signUp,
         signOut: signOut,
         getProfile: getProfile,
+        addFollower: addFollower,
       }}>
       {props.children}
     </userContext.Provider>

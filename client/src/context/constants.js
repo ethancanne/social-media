@@ -6,6 +6,7 @@ export const userConstants = {
   SET_USER: "SET_USER",
   GET_PROFILE: "GET_PROFILE",
   SET_LOADING: "SET_LOADING",
+  UPDATE_USER: "UPDATE_USER",
 };
 
 export const pageConstants = {

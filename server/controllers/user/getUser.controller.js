@@ -9,12 +9,12 @@ import { User } from "../../models/User";
 //  * @route      POST /signUp
 //  */
 export const getUserController = asyncHandler(async (req, res) => {
-  const _id = req.params.id;
+  const username = req.params.username;
 
   try {
     console.log("HERE");
     //Retrieve the user from the database
-    const user = await User.findOne({ _id });
+    const user = await User.findOne({ username });
 
     //Send the user to the client
     return res.send({ user });

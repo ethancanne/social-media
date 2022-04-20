@@ -16,7 +16,7 @@ const SidePage = props => {
         return <FollowingSidePage userId={props.userId} />;
 
       case sidePages.FOLLOWERS:
-        return <FollowersSidePage followers={props.followers} />;
+        return <FollowersSidePage userId={props.userId} />;
 
       case sidePages.CREATE_POST:
         return <CreatePostSidePage />;

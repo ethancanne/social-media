@@ -55,7 +55,7 @@ export const Page = ({ showSideBar = true, children, currentPage }) => {
               </Link>
 
               <Link
-                to={"/profile/" + loggedInUser._id}
+                to={"/profile/" + loggedInUser.username}
                 className={
                   currentPage == pages.PROFILE
                     ? "side-bar-navigation-item active"

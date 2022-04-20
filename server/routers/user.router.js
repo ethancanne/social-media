@@ -49,7 +49,9 @@ router.route(routes.User.GetAllUsers).get(authenticate, getAllUsersController);
  * @protected
  * @COMMENTS
  */
-router.route(routes.User.GetUser + "/:id").get(authenticate, getUserController);
+router
+  .route(routes.User.GetUser + "/:username")
+  .get(authenticate, getUserController);
 
 /**
  * @description Add Friend Route

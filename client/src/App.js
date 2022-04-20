@@ -62,11 +62,8 @@ const App = props => {
             {isLoggedIn ? <Home /> : <Redirect to={"/"} />}
           </Route>
           <Route
-            path='/profile/:id'
+            path='/profile/:username'
             render={props => {
-              // if (showingSidePages.length > 0 && isLoggedIn) {
-              //   addSidePage(views.PROFILE, props);
-              // } else {
               return isLoggedIn ? (
                 <Page currentPage={pages.PROFILE}>
                   <Profile {...props} />

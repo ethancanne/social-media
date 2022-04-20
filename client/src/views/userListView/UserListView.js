@@ -13,7 +13,7 @@ const UserListView = ({ users }) => {
   let history = useHistory();
 
   const displayProfilePage = user => {
-    history.push(`/profile/${user.user._id}`);
+    history.push(`/profile/${user.user.username}`);
     removeSidePage();
   };
   return (
