@@ -10,9 +10,11 @@
   min-height: 600px;
 
   .auth-form {
-    background-color: white;
-    // border-radius: 10px;
-    // box-shadow: rgba(64, 49, 147, 0.072) 0px 48px 100px 0px;
+    background-color: rgb(251, 251, 251);
+    box-shadow: 0 0 0 1px rgba(89, 105, 129, 0.143),
+      0 3px 20px 0 rgba(89, 105, 129, 0.019), 0 1px 2px 0 rgba(0, 0, 0, 0.14);
+
+    border-radius: 5px;
 
     display: flex;
     flex-direction: column;

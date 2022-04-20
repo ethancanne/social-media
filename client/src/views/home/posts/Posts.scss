@@ -1,11 +1,10 @@
-.home-page {
+@import "../../../globals.scss";
+.posts-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  h1 {
-    width: 100%;
-    text-align: right;
-  }
+  padding: 20px;
 }

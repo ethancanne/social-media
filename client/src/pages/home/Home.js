@@ -2,7 +2,7 @@ import "./Home.scss";
 import React, { useState } from "react";
 import { Page, pages } from "../Page";
 import axios from "axios";
-import Posts from "../../views/posts/Posts";
+import Posts from "../../views/home/posts/Posts";
 
 /**
  * Renders the Dashboard of the application.

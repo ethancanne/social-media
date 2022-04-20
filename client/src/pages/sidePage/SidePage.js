@@ -7,6 +7,7 @@ import CreatePostSidePage from "./createPostSidePage/CreatePostSidePage";
 import pageContext from "../../context/page/pageContext";
 import Button from "@mui/material/Button";
 import Profile from "../profile/Profile";
+import ViewPostSidePage from "./viewPostSidePage/ViewPostSidePage";
 
 const SidePage = props => {
   const { removeSidePage } = useContext(pageContext);
@@ -21,8 +22,8 @@ const SidePage = props => {
       case sidePages.CREATE_POST:
         return <CreatePostSidePage />;
 
-      case sidePages.PROFILE:
-        return <Profile user={props.user} />;
+      case sidePages.VIEW_POST:
+        return <ViewPostSidePage post={props.post} />;
 
       default:
         return null;

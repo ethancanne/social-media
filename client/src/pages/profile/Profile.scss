@@ -10,7 +10,13 @@
     flex-direction: column;
     padding: 40px;
 
-    border-right: 2px solid whitesmoke;
+    min-width: 400px;
+    margin: 15px;
+
+    background-color: white;
+
+    box-shadow: 0 0 0 1px rgba(89, 105, 129, 0.03),
+      0 3px 20px 0 rgba(89, 105, 129, 0.019), 0 1px 2px 0 rgba(0, 0, 0, 0.14);
 
     .names-container {
       padding-top: 20px;
@@ -47,7 +53,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
 
         .stat-button {
           text-decoration: none;
@@ -56,14 +62,14 @@
           padding: 0;
         }
         h1 {
-          font-size: 20px;
+          font-size: 17px;
           font-weight: 900;
           color: $textColor;
           text-align: left;
           width: 160px;
         }
         p {
-          font-size: 20px;
+          font-size: 15px;
 
           color: $textColor;
           text-align: left;
