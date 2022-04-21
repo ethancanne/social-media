@@ -13,6 +13,7 @@ import { opposePostController } from "../controllers/post/opposePost.controller.
 //create an express router for the user routes
 const router = express.Router();
 import routes from "./routes";
+import { searchPostsController } from "../controllers/post/searchPosts.controller.js";
 
 //import the auth middleware
 const { authenticate } = require("../middleware/auth.middleware");
@@ -94,5 +95,14 @@ router.route(routes.Post.SupportPost).put(authenticate, supportPostController);
  * @COMMENTS
  */
 router.route(routes.Post.OpposePost).put(authenticate, opposePostController);
+
+/**
+ * @description Search for posts
+ * @access      Private
+ * @route       Get /api/search/posts
+ * @protected
+ * @COMMENTS
+ */
+router.route(routes.Post.SearchPosts).post(authenticate, searchPostsController);
 
 export default router;

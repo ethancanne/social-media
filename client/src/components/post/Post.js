@@ -12,18 +12,42 @@ import ThumbsDownIcon from "@mui/icons-material/ThumbDown";
 import ProfilePicture from "../profilePicture/ProfilePicture";
 import pageContext from "../../context/page/pageContext";
 import { sidePages } from "../../pages/sidePage/sidePages";
+import userContext from "../../context/user/userContext";
 
 const Post = ({ post }) => {
   const { addSidePage } = useContext(pageContext);
+  const { loggedInUser } = useContext(userContext);
   return (
     <Card
-      sx={{ width: "500px", marginBottom: "40px" }}
-      onClick={() => addSidePage(sidePages.VIEW_POST, { post })}>
+      sx={{
+        width: "60%",
+        margin: "auto",
+        marginBottom: "40px",
+        overflow: "visible",
+      }}
+      onClick={() => addSidePage(sidePages.VIEW_POST, { post })}
+      variant='outlined'>
       <CardHeader
         title={post.title}
-        subheader={new Date(post.timestamp).toLocaleDateString()}
+        avatar={
+          <ProfilePicture
+            image={loggedInUser.profilePicture}
+            name={"johh"}
+            size={40}
+          />
+        }
       />
-      <CardMedia component='img' height='194' image={post.image} alt='post' />
+      <CardMedia
+        component='img'
+        image={"https://mui.com/static/images/cards/paella.jpg"}
+        alt='post'
+      />
+
+      <CardContent>
+        <Typography variant='body2' color='text.secondary'>
+          {post.body}
+        </Typography>
+      </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label='support'>
           <ThumbsUpIcon />
@@ -32,9 +56,6 @@ const Post = ({ post }) => {
           <ThumbsDownIcon />
         </IconButton>
       </CardActions>
-      <CardContent>
-        <Typography paragraph>{post.body}</Typography>
-      </CardContent>
     </Card>
   );
 };

@@ -1,11 +1,26 @@
 .home-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  h1 {
+  .search-bar {
     width: 100%;
-    text-align: right;
+    padding: 20px 40px 20px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 50;
+    background-color: rgb(255, 255, 255);
+
+    border-bottom: #e0e0e0 1px solid;
+
+    .search-type-field {
+      flex: 0.3;
+    }
+    .search-input {
+      flex: 0.7;
+    }
+  }
+  .home-posts-container {
+    padding-top: 80px;
+    height: 100vh;
   }
 }

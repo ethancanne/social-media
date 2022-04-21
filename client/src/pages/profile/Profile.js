@@ -7,6 +7,7 @@ import { notificationTypes } from "../../views/notification/NotificationTypes";
 import Button from "@mui/material/Button";
 import pageContext from "../../context/page/pageContext";
 import { sidePages } from "../sidePage/sidePages";
+import Posts from "../../views/home/posts/Posts";
 
 const Profile = props => {
   const {
@@ -109,7 +110,7 @@ const Profile = props => {
             </div>
           </div>
           <div className='user-posts-container'>
-            <h1>Posts</h1>
+            <Posts />
           </div>
         </>
       )}

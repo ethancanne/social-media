@@ -14,6 +14,7 @@ import routes from "./routes";
 import { addFollowerController } from "../controllers/user/addFollower.controller";
 import { getFollowersController } from "../controllers/user/getFollowers.controller";
 import { getFollowingController } from "../controllers/user/getFollowing.controller";
+import { searchUsersController } from "../controllers/user/searchUsers.controller";
 
 /**
  * @description Sign In User Route
@@ -85,5 +86,14 @@ router
 router
   .route(routes.User.GetFollowing + "/:id")
   .get(authenticate, getFollowingController);
+
+/**
+ * @description Search for users
+ * @access      Private
+ * @route       Get /api/search/users
+ * @protected
+ * @COMMENTS
+ */
+router.route(routes.User.SearchUsers).post(authenticate, searchUsersController);
 
 export default router;

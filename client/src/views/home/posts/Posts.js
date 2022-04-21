@@ -18,6 +18,13 @@ const Posts = ({}) => {
       supports: 44,
       opposes: 12,
     },
+    {
+      title: "Title",
+      timestamp: Date.now(),
+      body: "Some text",
+      supports: 44,
+      opposes: 12,
+    },
   ];
 
   return (

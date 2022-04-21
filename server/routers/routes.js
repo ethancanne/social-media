@@ -7,6 +7,7 @@ export default {
     AddFollower: "/api/addFollower",
     GetFollowers: "/api/getFollowers",
     GetFollowing: "/api/getFollowing",
+    SearchUsers: "/api/search/users",
   },
   Post: {
     CreatePost: "/api/createPost",
@@ -17,5 +18,6 @@ export default {
     DeletePost: "/api/deletePost",
     SupportPost: "/api/supportPost",
     OpposePost: "/api/opposePost",
+    SearchPosts: "/api/search/posts",
   },
 };
