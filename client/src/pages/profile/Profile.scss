@@ -6,7 +6,6 @@
   margin: auto;
   width: 100%;
   flex-wrap: wrap;
-  overflow: visible;
 
   .create-post-fab {
     position: fixed;
@@ -24,6 +23,7 @@
 
     min-width: 400px;
     margin: 15px;
+    margin-left: 40px;
 
     background-color: white;
 
@@ -102,7 +102,7 @@
   .user-posts-container {
     flex: 0.7;
     height: 100vh;
-    // padding: 20px;
-    overflow: visible;
+    margin-left: 40px;
+    overflow: hidden;
   }
 }
