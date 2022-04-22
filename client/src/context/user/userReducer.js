@@ -33,6 +33,17 @@ export default (state, action) => {
         showingUserProfile: action.payload.user,
         loading: false,
       };
+    case userConstants.REMOVE_PROFILE:
+      return {
+        ...state,
+        showingUserProfile: {
+          following: [],
+          followers: [],
+          posts: [],
+          profilePicture: "",
+        },
+        loading: false,
+      };
 
     case userConstants.SET_LOADING:
       return {
