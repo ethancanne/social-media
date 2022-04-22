@@ -1,0 +1,39 @@
+.title {
+    font-weight: bolder;
+    font-size: 1.7em;
+    padding-bottom: 4px;
+}
+
+.time {
+    color: gray;
+    padding-bottom: 10px;
+}
+
+.picture {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 50%;
+    height: 50%;
+}
+
+.body {
+    color: rgb(67, 67, 67);
+    margin-top: 4px;
+    width: 60%;
+}
+
+.counts {
+    margin-top: 15px;
+    display: flex;
+}
+
+.supportcount {
+    padding-left: 5px;
+    padding-right: 15px;
+    padding-top: 8px;
+}
+
+.opposecount {
+    padding-left: 4px;
+    padding-top: 8px;
+}
