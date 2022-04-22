@@ -10,10 +10,26 @@ import { User } from "../../models/User";
 //  */
 export const searchUsersController = asyncHandler(async (req, res) => {
   try {
-    //Retrieve the users from the database
-
+    const { searchTerm } = req.body;
+    //Search for users using the search term
+    const users = await User.find({
+      $or: [
+        {
+          username: {
+            $regex: searchTerm,
+            $options: "i",
+          },
+        },
+        {
+          fullName: {
+            $regex: searchTerm,
+            $options: "i",
+          },
+        },
+      ],
+    });
     //Send the users to the client
-    return res.send({ users });
+    return res.send({ users, message: "Users retrieved successfully" });
   } catch (err) {
     console.log("ERROR: ", err);
     //Send errors

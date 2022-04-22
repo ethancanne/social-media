@@ -101,7 +101,6 @@ const SignUp = ({ setShowingAuthView }) => {
           <label htmlFor='contained-button-file'>
             <Input
               accept='image/*'
-              multiple
               id='contained-button-file'
               type='file'
               color='secondary'

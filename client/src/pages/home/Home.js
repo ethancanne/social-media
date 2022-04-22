@@ -20,7 +20,7 @@ import SearchResultsView from "../../views/searchResultsView/SearchResultsView";
 const Home = props => {
   //Save search term in state
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchType, setSearchType] = useState("Posts");
+  const [searchType, setSearchType] = useState("users");
 
   const submitSearch = async e => {
     e.preventDefault();
@@ -48,8 +48,8 @@ const Home = props => {
             onChange={e => setSearchType(e.target.value)}
             value={searchType}
             variant='standard'>
-            <MenuItem value={"Posts"}>Users</MenuItem>
-            <MenuItem value={"Users"}>Posts</MenuItem>
+            <MenuItem value={"users"}>Users</MenuItem>
+            <MenuItem value={"posts"}>Posts</MenuItem>
           </Select>
         </form>
         {searchTerm === "" ? (
@@ -59,7 +59,12 @@ const Home = props => {
             </div>
           </>
         ) : (
-          <SearchResultsView search={searchTerm} type={searchType} />
+          <div className='home-posts-container'>
+            <SearchResultsView
+              searchTerm={searchTerm}
+              searchType={searchType}
+            />
+          </div>
         )}
       </div>
     </Page>

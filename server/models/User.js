@@ -11,6 +11,7 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -38,12 +39,14 @@ const userSchema = new Schema({
   ],
   followers: [
     {
-      user: { type: Schema.Types.ObjectId, ref: "User" },
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
   ],
   following: [
     {
-      user: { type: Schema.Types.ObjectId, ref: "User" },
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
   ],
 });

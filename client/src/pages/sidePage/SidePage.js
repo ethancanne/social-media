@@ -8,8 +8,11 @@ import pageContext from "../../context/page/pageContext";
 import Button from "@mui/material/Button";
 import Profile from "../profile/Profile";
 import ViewPostSidePage from "./viewPostSidePage/ViewPostSidePage";
+import Loading from "../../components/loading/Loading";
+import userContext from "../../context/user/userContext";
 
 const SidePage = props => {
+  const { loading } = useContext(userContext);
   const { removeSidePage } = useContext(pageContext);
   const returnSidePage = () => {
     switch (props.sidePage) {
@@ -32,19 +35,25 @@ const SidePage = props => {
 
   return (
     <>
-      <div className='side-page-background'> </div>
-      <div className='side-page-container'>
-        <div className='side-page-header'>
-          <h1 className='side-page-title'>{props.sidePage}</h1>
-          <Button
-            className='side-page-close-btn'
-            variant='text'
-            onClick={() => removeSidePage()}>
-            X
-          </Button>
-        </div>
-        <div className='side-page-contents'>{returnSidePage()}</div>
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className='side-page-background'> </div>
+          <div className='side-page-container'>
+            <div className='side-page-header'>
+              <h1 className='side-page-title'>{props.sidePage}</h1>
+              <Button
+                className='side-page-close-btn'
+                variant='text'
+                onClick={() => removeSidePage()}>
+                X
+              </Button>
+            </div>
+            <div className='side-page-contents'>{returnSidePage()}</div>
+          </div>
+        </>
+      )}
     </>
   );
 };

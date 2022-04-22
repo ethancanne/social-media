@@ -1,6 +1,7 @@
 @import "../../globals.scss";
 .profile-page {
   display: flex;
+  flex-wrap: wrap;
   overflow: visible;
 
   .user-info-container {

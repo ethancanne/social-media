@@ -20,8 +20,10 @@ const Post = ({ post }) => {
   return (
     <Card
       sx={{
-        width: "60%",
-        margin: "auto",
+        width: "500px",
+        backgroundColor: "white",
+        borderRadius: "0px",
+        margin: "5px",
         marginBottom: "40px",
         overflow: "visible",
       }}

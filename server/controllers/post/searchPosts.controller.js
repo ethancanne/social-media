@@ -7,13 +7,23 @@ import asyncHandler from "express-async-handler";
 //  * @route      GET /getAllUsers
 //  */
 export const searchPostsController = asyncHandler(async (req, res) => {
+  const { searchTerm } = req.body;
   const errors = [];
   try {
-    //Create the post in the database using the Post model, and save it
-    //Send the post back to the client
+    //Search for posts using the search term
+    const posts = await Post.find({
+      $or: [
+        {
+          title: {
+            $regex: searchTerm,
+            $options: "i",
+          },
+        },
+      ],
+    });
 
     return res.send({
-      posts: {},
+      posts,
       message: "Posts retrieved successfully",
     });
   } catch (err) {

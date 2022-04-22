@@ -19,8 +19,8 @@ export const addFollowerController = asyncHandler(async (req, res) => {
     )
       throw "User is already following";
 
-    req.user.following = req.user.following.concat({ user: follower._id });
-    follower.followers = follower.followers.concat({ user: req.user._id });
+    req.user.following = req.user.following.concat(follower._id);
+    follower.followers = follower.followers.concat(req.user._id);
 
     await follower.save();
     await req.user.save();

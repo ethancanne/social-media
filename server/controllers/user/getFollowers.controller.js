@@ -10,7 +10,7 @@ export const getFollowersController = asyncHandler(async (req, res) => {
     const user = await User.findOne({ _id });
 
     //Populate the followers array
-    await user.populate({ path: "followers.user" });
+    await user.populate({ path: "followers" });
 
     //Send the user to the client
     return res.send({ followers: user.followers });

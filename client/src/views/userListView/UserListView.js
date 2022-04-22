@@ -1,5 +1,5 @@
 import "./UserListView.scss";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ProfilePicture from "../../components/profilePicture/ProfilePicture";
 import Button from "@mui/material/Button";
 import { Link, useHistory } from "react-router-dom";
@@ -13,29 +13,31 @@ const UserListView = ({ users }) => {
   let history = useHistory();
 
   const displayProfilePage = user => {
-    history.push(`/profile/${user.user.username}`);
+    history.push(`/profile/${user.username}`);
     removeSidePage();
   };
   return (
     <div className='user-list-view-container'>
-      {users.map(user => (
-        <Button
-          variant='text'
-          className='user-item'
-          onClick={() => displayProfilePage(user)}>
-          <div className='user-main-info'>
-            <ProfilePicture
-              className='user-item-profile-picture'
-              image={user.user.profilePicture}
-              name={user.user.fullName}
-              isBase64={true}
-              size={50}
-            />
-            <div className='user-item-fullname'>{user.user.fullName}</div>
-          </div>
-          <div className='user-item-username'>@{user.user.username}</div>
-        </Button>
-      ))}
+      {users &&
+        users.length > 0 &&
+        users.map(user => (
+          <Button
+            variant='text'
+            className='user-item'
+            onClick={() => displayProfilePage(user)}>
+            <div className='user-main-info'>
+              <ProfilePicture
+                className='user-item-profile-picture'
+                image={user.profilePicture}
+                name={user.fullName}
+                isBase64={true}
+                size={50}
+              />
+              <div className='user-item-fullname'>{user.fullName}</div>
+            </div>
+            <div className='user-item-username'>@{user.username}</div>
+          </Button>
+        ))}
     </div>
   );
 };
