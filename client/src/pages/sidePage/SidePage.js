@@ -35,25 +35,27 @@ const SidePage = props => {
 
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <>
-          <div className='side-page-background'> </div>
-          <div className='side-page-container'>
-            <div className='side-page-header'>
-              <h1 className='side-page-title'>{props.sidePage}</h1>
-              <Button
-                className='side-page-close-btn'
-                variant='text'
-                onClick={() => removeSidePage()}>
-                X
-              </Button>
-            </div>
-            <div className='side-page-contents'>{returnSidePage()}</div>
-          </div>
-        </>
-      )}
+      <>
+        <div className='side-page-background'> </div>
+        <div className='side-page-container'>
+          {loading ? (
+            <Loading />
+          ) : (
+            <>
+              <div className='side-page-header'>
+                <h1 className='side-page-title'>{props.sidePage}</h1>
+                <Button
+                  className='side-page-close-btn'
+                  variant='text'
+                  onClick={() => removeSidePage()}>
+                  X
+                </Button>
+              </div>
+              <div className='side-page-contents'>{returnSidePage()}</div>
+            </>
+          )}
+        </div>
+      </>
     </>
   );
 };

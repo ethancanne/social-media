@@ -9,14 +9,26 @@ import pageContext from "../../context/page/pageContext";
 import { sidePages } from "../sidePage/sidePages";
 import Posts from "../../views/home/posts/Posts";
 import Loading from "../../components/loading/Loading";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 
 const Profile = props => {
-  const { getProfile, loading, showingUserProfile, loggedInUser, addFollower } =
-    useContext(userContext);
+  const {
+    getProfile,
+    removeProfile,
+    loading,
+    showingUserProfile,
+    loggedInUser,
+    addFollower,
+  } = useContext(userContext);
   const { addSidePage, showNotification } = useContext(pageContext);
 
   useEffect(() => {
     getProfile(props.match.params.username);
+
+    return () => {
+      removeProfile();
+    };
   }, [props.match.params.username]);
 
   const submitAddFollower = async () => {
@@ -26,6 +38,13 @@ const Profile = props => {
   };
   return (
     <div className='profile-page'>
+      <Fab
+        color='secondary'
+        aria-label='add'
+        className='create-post-fab'
+        onClick={() => addSidePage(sidePages.CREATE_POST)}>
+        <AddIcon />
+      </Fab>
       {loading ? (
         <Loading />
       ) : (

@@ -134,6 +134,11 @@ const UserState = props => {
     }
   };
 
+  const removeProfile = async () =>
+    dispatch({
+      type: userConstants.REMOVE_PROFILE,
+    });
+
   const addFollower = async id => {
     setLoading();
     try {
@@ -165,6 +170,7 @@ const UserState = props => {
         signUp: signUp,
         signOut: signOut,
         getProfile: getProfile,
+        removeProfile: removeProfile,
         addFollower: addFollower,
       }}>
       {props.children}
