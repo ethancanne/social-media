@@ -1,0 +1,47 @@
+@import "../../../globals.scss";
+.settings-list-container {
+  height: 100%;
+  width: 100%;
+
+  .settings-list-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+
+    text-decoration: none;
+    text-transform: none;
+    text-align: left;
+    color: $accentColor;
+
+    .settings-item-left {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      flex: 1;
+      h1 {
+        font-size: 16px;
+        font-weight: 500;
+        color: $textColor;
+        max-width: 150px;
+        margin-left: 10px;
+      }
+      p {
+        font-size: 15px;
+        font-weight: 300;
+        text-align: left;
+        padding: 10px;
+        width: 400px;
+        color: $secondaryTextColor;
+      }
+    }
+    .settings-item-right {
+      flex: 1;
+      padding-right: 20px;
+      text-align: right;
+    }
+  }
+}

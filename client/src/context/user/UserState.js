@@ -158,6 +158,43 @@ const UserState = props => {
     }
   };
 
+  const editProfile = async (
+    fullName,
+    username,
+    email,
+    bio,
+    profilePicture
+  ) => {
+    setLoading();
+    try {
+      //Set up form data
+      const formData = new FormData();
+      formData.append("fullName", fullName);
+      formData.append("username", username);
+      formData.append("email", email);
+      formData.append("bio", bio);
+      formData.append("profilePicture", profilePicture);
+
+      const res = await axios.put(Routes.User.EditProfile, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (res.data.error) throw res.data.error;
+
+      dispatch({
+        type: userConstants.UPDATE_USER,
+        payload: { user: res.data.user },
+      });
+
+      localStorage.setItem("loggedInUser", JSON.stringify(res.data.user));
+
+      return res.data.message;
+    } catch (err) {
+      throw err;
+    }
+  };
+
   return (
     <userContext.Provider
       value={{
@@ -172,6 +209,7 @@ const UserState = props => {
         getProfile: getProfile,
         removeProfile: removeProfile,
         addFollower: addFollower,
+        editProfile: editProfile,
       }}>
       {props.children}
     </userContext.Provider>

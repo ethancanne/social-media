@@ -4,6 +4,11 @@ import { signInController } from "../controllers/user/signIn.controller";
 import { signUpController } from "../controllers/user/signUp.controller";
 import { getUserController } from "../controllers/user/getUser.controller";
 import { getAllUsersController } from "../controllers/user/getAllUsers.controller";
+import { addFollowerController } from "../controllers/user/addFollower.controller";
+import { getFollowersController } from "../controllers/user/getFollowers.controller";
+import { getFollowingController } from "../controllers/user/getFollowing.controller";
+import { searchUsersController } from "../controllers/user/searchUsers.controller";
+import { editProfileController } from "../controllers/user/editProfile.controller";
 
 //import middleware
 const { authenticate } = require("../middleware/auth.middleware");
@@ -11,10 +16,6 @@ const { uploadImage } = require("../middleware/uploadImage.middleware");
 //create an express router for the user routes
 const router = express.Router();
 import routes from "./routes";
-import { addFollowerController } from "../controllers/user/addFollower.controller";
-import { getFollowersController } from "../controllers/user/getFollowers.controller";
-import { getFollowingController } from "../controllers/user/getFollowing.controller";
-import { searchUsersController } from "../controllers/user/searchUsers.controller";
 
 /**
  * @description Sign In User Route
@@ -95,5 +96,20 @@ router
  * @COMMENTS
  */
 router.route(routes.User.SearchUsers).post(authenticate, searchUsersController);
+
+/**
+ * @description Edit Profile Route
+ * @access      Private
+ * @route       Get /api/editProfile
+ * @protected
+ * @COMMENTS
+ */
+router
+  .route(routes.User.EditProfile)
+  .put(
+    authenticate,
+    uploadImage.single("profilePicture"),
+    editProfileController
+  );
 
 export default router;

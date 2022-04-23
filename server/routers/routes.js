@@ -8,6 +8,7 @@ export default {
     GetFollowers: "/api/getFollowers",
     GetFollowing: "/api/getFollowing",
     SearchUsers: "/api/search/users",
+    EditProfile: "/api/editProfile",
   },
   Post: {
     CreatePost: "/api/createPost",
