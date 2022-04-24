@@ -6,13 +6,15 @@ import ThemeIcon from "@mui/icons-material/DarkMode";
 import ArrowIcon from "@mui/icons-material/ArrowForwardIos";
 import Button from "@mui/material/Button";
 import { settingPages } from "../../../pages/settings/Settings";
+import { useHistory } from "react-router-dom";
 
 const GeneralSettingsView = ({ setActiveSettingsView }) => {
+  const history = useHistory();
   return (
     <div className='settings-list-container'>
       <Button
         className='settings-list-item'
-        onClick={() => setActiveSettingsView(settingPages.EDIT_PROFILE)}>
+        onClick={() => history.push("/settings/" + settingPages.EDIT_PROFILE)}>
         <div className='settings-item-left'>
           <ProfileIcon />
           <h1>Edit Profile</h1>
@@ -24,7 +26,9 @@ const GeneralSettingsView = ({ setActiveSettingsView }) => {
       </Button>
       <Button
         className='settings-list-item'
-        onClick={() => setActiveSettingsView(settingPages.CHANGE_PASSWORD)}>
+        onClick={() =>
+          history.push("/settings/" + settingPages.CHANGE_PASSWORD)
+        }>
         <div className='settings-item-left'>
           <LockIcon />
           <h1>Change Password</h1>

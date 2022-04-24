@@ -23,6 +23,9 @@ import Notification from "./views/notification/Notification";
 import SidePage from "./pages/sidePage/SidePage";
 import pageContext from "./context/page/pageContext";
 import { Page, pages } from "./pages/Page";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+import { sidePages } from "./pages/sidePage/sidePages";
 
 //Import Models
 
@@ -65,8 +68,30 @@ const App = props => {
             path='/profile/:username'
             render={props => {
               return isLoggedIn ? (
-                <Page currentPage={pages.PROFILE}>
-                  <Profile {...props} />
+                <>
+                  <Fab
+                    color='secondary'
+                    aria-label='add'
+                    className='create-post-fab'
+                    onClick={() => addSidePage(sidePages.CREATE_POST)}>
+                    <AddIcon />
+                  </Fab>
+                  <Page currentPage={pages.PROFILE}>
+                    <Profile {...props} />
+                  </Page>
+                </>
+              ) : (
+                <Redirect to={"/"} />
+              );
+              // }
+            }}
+          />
+          <Route
+            path='/settings/:defaultView'
+            render={props => {
+              return isLoggedIn ? (
+                <Page currentPage={pages.SETTINGS}>
+                  <Settings {...props} />
                 </Page>
               ) : (
                 <Redirect to={"/"} />
@@ -74,9 +99,6 @@ const App = props => {
               // }
             }}
           />
-          <Route exact path='/settings'>
-            {isLoggedIn ? <Settings /> : <Redirect to={"/"} />}
-          </Route>
           <Route path='*'>
             <Redirect to={"/"} />
           </Route>

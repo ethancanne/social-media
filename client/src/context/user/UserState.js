@@ -139,10 +139,10 @@ const UserState = props => {
       type: userConstants.REMOVE_PROFILE,
     });
 
-  const addFollower = async id => {
+  const toggleFollower = async id => {
     setLoading();
     try {
-      const res = await axios.post(Routes.User.AddFollower + "/" + id);
+      const res = await axios.post(Routes.User.ToggleFollower + "/" + id);
       if (res.data.error) throw res.data.error;
 
       dispatch({
@@ -208,7 +208,7 @@ const UserState = props => {
         signOut: signOut,
         getProfile: getProfile,
         removeProfile: removeProfile,
-        addFollower: addFollower,
+        toggleFollower: toggleFollower,
         editProfile: editProfile,
       }}>
       {props.children}

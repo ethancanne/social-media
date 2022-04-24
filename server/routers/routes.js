@@ -4,7 +4,7 @@ export default {
     SignUp: "/api/signUp",
     GetUser: "/api/getUser",
     GetAllUsers: "/api/getAllUsers",
-    AddFollower: "/api/addFollower",
+    ToggleFollower: "/api/toggleFollower",
     GetFollowers: "/api/getFollowers",
     GetFollowing: "/api/getFollowing",
     SearchUsers: "/api/search/users",

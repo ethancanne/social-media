@@ -13,7 +13,6 @@
 html {
   background-color: rgb(246, 248, 250);
 
-
   /* Full height */
   height: 100%;
 
@@ -31,6 +30,14 @@ html {
         height: 100%;
         display: flex;
         flex-direction: column;
+
+        .create-post-fab {
+          position: fixed;
+          max-height: 100%;
+          bottom: 20px;
+          right: 20px;
+          z-index: 10;
+        }
 
         .container {
           flex: 1;

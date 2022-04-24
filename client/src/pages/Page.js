@@ -14,6 +14,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 
 import "./Page.scss";
 import pageContext from "../context/page/pageContext";
+import { settingPages } from "./settings/Settings";
 
 /**
  * A wrapper that should go around every page
@@ -65,7 +66,7 @@ export const Page = ({ showSideBar = true, children, currentPage }) => {
                 Profile
               </Link>
               <Link
-                to='/settings'
+                to={"/settings/" + settingPages.GENERAL}
                 className={
                   currentPage == pages.SETTINGS
                     ? "side-bar-navigation-item active"

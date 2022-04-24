@@ -4,7 +4,7 @@ import { signInController } from "../controllers/user/signIn.controller";
 import { signUpController } from "../controllers/user/signUp.controller";
 import { getUserController } from "../controllers/user/getUser.controller";
 import { getAllUsersController } from "../controllers/user/getAllUsers.controller";
-import { addFollowerController } from "../controllers/user/addFollower.controller";
+import { toggleFollowerController } from "../controllers/user/toggleFollower.controller";
 import { getFollowersController } from "../controllers/user/getFollowers.controller";
 import { getFollowingController } from "../controllers/user/getFollowing.controller";
 import { searchUsersController } from "../controllers/user/searchUsers.controller";
@@ -63,8 +63,8 @@ router
  * @COMMENTS
  */
 router
-  .route(routes.User.AddFollower + "/:id")
-  .post(authenticate, addFollowerController);
+  .route(routes.User.ToggleFollower + "/:id")
+  .post(authenticate, toggleFollowerController);
 
 /**
  * @description Get followers Route

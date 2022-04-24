@@ -1,38 +1,26 @@
 @import "../../globals.scss";
 .profile-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: auto;
   width: 100%;
   flex-wrap: wrap;
-
-  .create-post-fab {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 10;
-  }
+  position: relative;
 
   .user-info-container {
-    flex: 0.3;
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 40px;
-
-    min-width: 400px;
-    margin: 15px;
-    margin-left: 40px;
-
+    justify-content: center;
+    border-bottom: $secondaryTextColor 1px solid;
     background-color: white;
+    // padding: 30px;
 
-    box-shadow: 0 0 0 1px rgba(89, 105, 129, 0.03),
-      0 3px 20px 0 rgba(89, 105, 129, 0.019), 0 1px 2px 0 rgba(0, 0, 0, 0.14);
+    padding-top: 20px;
+    // margin-left: 40px;
 
     .names-container {
       padding-top: 20px;
-      flex: 0.5;
+      display: flex;
+      flex-direction: column;
 
       .user-info-name {
         font-size: 30px;
@@ -53,6 +41,8 @@
         text-align: left;
         padding: 20px 0 20px 0;
         color: $textColor;
+        max-width: 70vw;
+        word-wrap: break-word;
       }
     }
     .stats-container {
@@ -60,25 +50,33 @@
       border-top: 1px solid whitesmoke;
       padding-top: 20px;
       width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-bottom: 20px;
 
+      .stat-button {
+        text-decoration: none;
+        text-transform: none;
+        margin: 0;
+        padding: 0;
+      }
       .stat-item {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 5px;
-
         .stat-button {
           text-decoration: none;
           text-transform: none;
-          margin: 0;
-          padding: 0;
+          color: $textColor;
         }
+
         h1 {
           font-size: 17px;
           font-weight: 900;
           color: $textColor;
           text-align: left;
-          width: 160px;
+          padding-right: 20px;
         }
         p {
           font-size: 15px;
@@ -100,9 +98,9 @@
     }
   }
   .user-posts-container {
-    flex: 0.7;
-    height: 100vh;
-    margin-left: 40px;
+    flex: 1;
+    height: 100%;
+    // margin-left: 40px;
     overflow: hidden;
   }
 }

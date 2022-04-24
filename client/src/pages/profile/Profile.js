@@ -9,17 +9,19 @@ import pageContext from "../../context/page/pageContext";
 import { sidePages } from "../sidePage/sidePages";
 import Posts from "../../views/home/posts/Posts";
 import Loading from "../../components/loading/Loading";
-import Fab from "@mui/material/Fab";
-import AddIcon from "@mui/icons-material/Add";
+
+import { useHistory } from "react-router";
+import { settingPages } from "../settings/Settings";
 
 const Profile = props => {
+  const history = useHistory();
   const {
     getProfile,
     removeProfile,
     loading,
     showingUserProfile,
     loggedInUser,
-    addFollower,
+    toggleFollower,
   } = useContext(userContext);
   const { addSidePage, showNotification } = useContext(pageContext);
 
@@ -31,20 +33,16 @@ const Profile = props => {
     };
   }, [props.match.params.username]);
 
-  const submitAddFollower = async () => {
-    const message = await addFollower(showingUserProfile._id);
-    //show success notification
-    showNotification(message, notificationTypes.SUCCESS);
+  const submitToggleFollower = async () => {
+    try {
+      const message = await toggleFollower(showingUserProfile._id);
+      showNotification(message, notificationTypes.SUCCESS);
+    } catch (err) {
+      showNotification(err.message || err, notificationTypes.ERROR);
+    }
   };
   return (
     <div className='profile-page'>
-      <Fab
-        color='secondary'
-        aria-label='add'
-        className='create-post-fab'
-        onClick={() => addSidePage(sidePages.CREATE_POST)}>
-        <AddIcon />
-      </Fab>
       {loading ? (
         <Loading />
       ) : (
@@ -72,8 +70,17 @@ const Profile = props => {
 
               <div className='stats-container'>
                 <div className='stat-item'>
-                  <h1>Posts:</h1>
-                  <p>{showingUserProfile.posts.length}</p>
+                  <Button
+                    variant='text'
+                    color='secondary'
+                    className='stat-button'
+                    onClick={() =>
+                      //TODO: scroll to posts
+                      console.log("first")
+                    }>
+                    <h1>Posts:</h1>
+                    <p>{showingUserProfile.posts.length}</p>
+                  </Button>
                 </div>
                 <div className='stat-item'>
                   <Button
@@ -112,22 +119,30 @@ const Profile = props => {
                     <>
                       <Button
                         variant='outlined'
-                        onClick={() => submitAddFollower()}>
+                        onClick={() => submitToggleFollower()}>
                         Follow
                       </Button>
                     </>
                   ) : (
-                    <Button variant='outlined' disabled>
-                      Following
+                    <Button
+                      variant='standard'
+                      onClick={() => submitToggleFollower()}>
+                      Unfollow
                     </Button>
                   )
                 ) : (
-                  <Button variant='outlined'>Edit Profile</Button>
+                  <Button
+                    variant='outlined'
+                    onClick={() => {
+                      history.push("/settings/" + settingPages.EDIT_PROFILE);
+                    }}>
+                    Edit Profile
+                  </Button>
                 )}
               </div>
             </div>
             <div className='user-posts-container'>
-              <Posts />
+              <Posts title={showingUserProfile.fullName + "'s Posts"} />
             </div>
           </>
         )

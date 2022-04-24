@@ -55,7 +55,7 @@ const Home = props => {
         {searchTerm === "" ? (
           <>
             <div className='home-posts-container'>
-              <Posts />
+              <Posts title='Your feed' />
             </div>
           </>
         ) : (

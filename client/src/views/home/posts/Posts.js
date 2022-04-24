@@ -2,7 +2,7 @@ import "./Posts.scss";
 import Post from "../../../components/post/Post";
 import React, { useState } from "react";
 
-const Posts = ({ }) => {
+const Posts = ({ title }) => {
   const posts = [
     {
       title: "Title",
@@ -32,6 +32,7 @@ const Posts = ({ }) => {
 
   return (
     <div className='posts-container'>
+      <h1 className='posts-title'>{title}</h1>
       {posts.map(post => (
         <Post post={post} />
       ))}
