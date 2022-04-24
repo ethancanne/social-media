@@ -52,7 +52,7 @@ router
  * @route       POST /api/signIn
  * @COMMENTS
  */
-router.route(routes.Post.GetPost).get(authenticate, getPostController);
+router.route(routes.Post.GetPost+"/:id").get(authenticate, getPostController);
 
 /**
  * @description Get All Posts Route
@@ -103,6 +103,6 @@ router.route(routes.Post.OpposePost).put(authenticate, opposePostController);
  * @protected
  * @COMMENTS
  */
-router.route(routes.Post.SearchPosts).post(authenticate, searchPostsController);
+router.route(routes.Post.SearchPosts+"/:searchTerm").get(authenticate, searchPostsController);
 
 export default router;

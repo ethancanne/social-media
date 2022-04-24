@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
-// import { Post } from "../../models/Post"; //TODO: Import the Post model
+import { Post } from "../../models/Post"; //TODO: Import the Post model
+import { restart } from "nodemon";
 
 // /**
 //  * @description A controller that will create a post in the database and send it back to the client
@@ -8,15 +9,18 @@ import asyncHandler from "express-async-handler";
 //  */
 export const supportPostController = asyncHandler(async (req, res) => {
   const errors = [];
+  const {id} = req.body;
   try {
     //Create the post in the database using the Post model, and save it
     //Send the post back to the client
+    const post = await Post.findById(id);
 
-    return res.send({
-      post: {},
-      message: "Post successfully supported",
-    });
-  } catch (err) {
+    post.supports.push(req.user._id);
+    await post.save();
+
+    return res.send({post})
+
+  } catch (err) { console.log(err)
     //Send errors
     return res.send({
       error: err,
