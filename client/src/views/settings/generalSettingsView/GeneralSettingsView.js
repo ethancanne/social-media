@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import { settingPages } from "../../../pages/settings/Settings";
 import { useHistory } from "react-router-dom";
 
-const GeneralSettingsView = ({ setActiveSettingsView }) => {
+const GeneralSettingsView = () => {
   const history = useHistory();
   return (
     <div className='settings-list-container'>

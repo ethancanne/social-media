@@ -11,7 +11,7 @@ export const createPostController = asyncHandler(async (req, res) => {
   try {
     //Create the post in the database using the Post model, and save it
     //Send the post back to the client
-    
+
     return res.send({
       post: {},
       message: "Post created successfully",
