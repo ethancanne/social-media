@@ -20,11 +20,11 @@ const ViewPostSidePage = ({ post }) => {
         <IconButton>
           <ThumbsUpIcon />
         </IconButton>
-        <div className='supportcount'>{post.supports}</div>
+        <div className='supportcount'>{post.supports.length}</div>
         <IconButton>
           <ThumbsDownIcon />
         </IconButton>
-        <div className='opposecount'>{post.opposes}</div>
+        <div className='opposecount'>{post.opposes.length}</div>
       </div>
     </div>
   );
