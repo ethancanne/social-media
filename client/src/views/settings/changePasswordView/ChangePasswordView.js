@@ -37,35 +37,38 @@ const ChangePasswordView = () => {
 
   return (
     <form onSubmit={submitChangePassword} className='change-password-form'>
-        <p>Current Password</p>
-        <TextField
-          onChange={e => setCurrentPassword(e.target.value)}
-          value={currentPassword}
-          type='password'
-          variant='outlined'
-          color='secondary'
-        />
-        <p>New Password</p>
-        <TextField
-          onChange={e => setNewPassword(e.target.value)}
-          value={newPassword}
-          type='password'
-          variant='outlined'
-          color='secondary'
-        />
-        <p>Confirm New Password</p>
-        <TextField
-          onChange={e => setConfirmNewPassword(e.target.value)}
-          value={confirmNewPassword}
-          type='password'
-          variant='outlined'
-          color='secondary'
-        />
-        <Button sx={{marginTop:"16px"}} variant='contained' color='secondary' onClick={submitChangePassword}>
-          Submit
-        </Button>
+      <p>Current Password</p>
+      <TextField
+        onChange={e => setCurrentPassword(e.target.value)}
+        value={currentPassword}
+        type='password'
+        variant='outlined'
+        color='secondary'
+      />
+      <p>New Password</p>
+      <TextField
+        onChange={e => setNewPassword(e.target.value)}
+        value={newPassword}
+        type='password'
+        variant='outlined'
+        color='secondary'
+      />
+      <p>Confirm New Password</p>
+      <TextField
+        onChange={e => setConfirmNewPassword(e.target.value)}
+        value={confirmNewPassword}
+        type='password'
+        variant='outlined'
+        color='secondary'
+      />
+      <Button
+        sx={{ marginTop: "16px" }}
+        variant='contained'
+        color='secondary'
+        onClick={submitChangePassword}>
+        Submit
+      </Button>
     </form>
-    
   );
 };
 

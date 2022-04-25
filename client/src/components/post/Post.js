@@ -26,6 +26,7 @@ const Post = ({ post }) => {
         margin: "5px",
         marginBottom: "40px",
         overflow: "visible",
+        cursor: "pointer",
       }}
       onClick={() => addSidePage(sidePages.VIEW_POST, { post })}
       variant='outlined'>
@@ -55,11 +56,11 @@ const Post = ({ post }) => {
         <IconButton aria-label='support'>
           <ThumbsUpIcon />
         </IconButton>
-        <div className="supportcount">{post.supports.length}</div>
+        <div className='supportcount'>{post.supports.length}</div>
         <IconButton aria-label='oppose'>
           <ThumbsDownIcon />
         </IconButton>
-        <div className="opposecount">{post.opposes.length}</div>
+        <div className='opposecount'>{post.opposes.length}</div>
       </CardActions>
     </Card>
   );

@@ -92,7 +92,7 @@ const Profile = props => {
                     }>
                     <h1>Posts:</h1>
 
-                    <p>{showingUserProfile.posts.length}</p>
+                    <p>{userPosts.length}</p>
                   </Button>
                 </div>
                 <div className='stat-item'>

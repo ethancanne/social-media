@@ -9,6 +9,7 @@ import { getFollowersController } from "../controllers/user/getFollowers.control
 import { getFollowingController } from "../controllers/user/getFollowing.controller";
 import { searchUsersController } from "../controllers/user/searchUsers.controller";
 import { editProfileController } from "../controllers/user/editProfile.controller";
+import { changePasswordController } from "../controllers/user/changePassword.controller";
 
 //import middleware
 const { authenticate } = require("../middleware/auth.middleware");
@@ -113,5 +114,16 @@ router
     uploadImage.single("profilePicture"),
     editProfileController
   );
+
+/**
+ * @description Change Password Route
+ * @access      Private
+ * @route       Get /api/changePassword
+ * @protected
+ * @COMMENTS
+ */
+router
+  .route(routes.User.ChangePassword)
+  .put(authenticate, changePasswordController);
 
 export default router;

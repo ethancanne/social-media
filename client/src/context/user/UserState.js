@@ -52,7 +52,7 @@ const UserState = props => {
       //Return message for the notification
       return res.data.message;
     } catch (err) {
-      throw err;
+      throw err.message || err;
     }
   };
 
@@ -102,7 +102,7 @@ const UserState = props => {
       //Return message for the notification
       return res.data.message;
     } catch (err) {
-      throw err;
+      throw err.message || err;
     }
   };
 
@@ -130,7 +130,7 @@ const UserState = props => {
 
       return res.data.message;
     } catch (err) {
-      throw err;
+      throw err.message || err;
     }
   };
 
@@ -154,7 +154,7 @@ const UserState = props => {
 
       return res.data.message;
     } catch (err) {
-      throw err;
+      throw err.message || err;
     }
   };
 
@@ -192,7 +192,27 @@ const UserState = props => {
 
       return res.data.message;
     } catch (err) {
-      throw err;
+      throw err.message || err;
+    }
+  };
+
+  const changePassword = async (
+    currentPassword,
+    newPassword,
+    confirmNewPassword
+  ) => {
+    setLoading();
+    try {
+      //Set up form data
+      const res = await axios.put(Routes.User.ChangePassword, {
+        currentPassword,
+        newPassword,
+        confirmNewPassword,
+      });
+      if (res.data.error) throw res.data.error;
+      return res.data.message;
+    } catch (err) {
+      throw err.message || err;
     }
   };
 
@@ -213,6 +233,7 @@ const UserState = props => {
         removeProfile: removeProfile,
         toggleFollower: toggleFollower,
         editProfile: editProfile,
+        changePassword: changePassword,
       }}>
       {props.children}
     </userContext.Provider>

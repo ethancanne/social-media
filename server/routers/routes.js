@@ -9,6 +9,8 @@ export default {
     GetFollowing: "/api/getFollowing",
     SearchUsers: "/api/search/users",
     EditProfile: "/api/editProfile",
+    EditProfile: "/api/editProfile",
+    ChangePassword: "/api/changePassword",
   },
   Post: {
     CreatePost: "/api/createPost",
