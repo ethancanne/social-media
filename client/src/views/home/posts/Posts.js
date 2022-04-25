@@ -8,6 +8,7 @@ const Posts = ({ title, posts }) => {
   const { isLoading } = useContext(postsContext);
   return (
     <div>
+      {console.log(isLoading)}
       {isLoading ? (
         <Loading />
       ) : (

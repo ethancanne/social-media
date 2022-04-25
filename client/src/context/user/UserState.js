@@ -178,6 +178,7 @@ const UserState = props => {
       const res = await axios.put(Routes.User.EditProfile, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
+          "max-http-header-size": Infinity,
         },
       });
       if (res.data.error) throw res.data.error;

@@ -28,7 +28,7 @@ const Notification = () => {
         autoHideDuration={6000}
         onClose={handleClose}>
         <Alert onClose={handleClose} severity={type} sx={{ width: "100%" }}>
-          {message}
+          {JSON.stringify(message)}
         </Alert>
       </Snackbar>
     </Stack>

@@ -9,6 +9,13 @@ export default (state, action) => {
         isLoading: true,
       };
 
+    case postsConstants.CREATE_POST:
+      return {
+        ...state,
+        userPosts: [...state.userPosts, action.payload],
+        isLoading: false,
+      };
+
     case postsConstants.GET_FEED:
       return {
         ...state,

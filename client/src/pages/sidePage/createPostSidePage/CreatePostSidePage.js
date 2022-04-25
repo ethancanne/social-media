@@ -4,17 +4,28 @@ import TextareaAutosize from "@mui/base/TextareaAutosize";
 import Button from "@mui/material/Button";
 import ProfilePicture from "../../../components/profilePicture/ProfilePicture";
 import { styled } from "@mui/material/styles";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import postsContext from "../../../context/posts/postsContext";
+import { notificationTypes } from "../../../views/notification/NotificationTypes";
+import notificationContext from "../../../context/page/pageContext";
 
 const CreatePostSidePage = () => {
   //save title, content, image to state
-  const [title, setTitle] = useState("te");
+  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
+  const { createPost } = useContext(postsContext);
+  const { showNotification } = useContext(notificationContext);
 
-  const handleSubmitCreatePost = e => {
+  const handleSubmitCreatePost = async e => {
     e.preventDefault();
-    console.log(title, content, image);
+    try {
+      const message = await createPost(title, content, image);
+      showNotification(message, notificationTypes.SUCCESS);
+    } catch (err) {
+      console.log(err);
+      showNotification(err.message || err, notificationTypes.ERROR);
+    }
   };
 
   const Input = styled("input")({

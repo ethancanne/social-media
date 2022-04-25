@@ -4,35 +4,38 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const postSchema = new Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  content: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-  },
-  creator: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
-  supports: [
-    {
+const postSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+    },
+    creator: {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
-  ],
-  opposes: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
-});
+    supports: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    opposes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
 postSchema.pre("find", function () {
   this.populate({ path: "creator" });

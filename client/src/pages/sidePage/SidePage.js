@@ -9,10 +9,10 @@ import Button from "@mui/material/Button";
 import Profile from "../profile/Profile";
 import ViewPostSidePage from "./viewPostSidePage/ViewPostSidePage";
 import Loading from "../../components/loading/Loading";
-import userContext from "../../context/user/userContext";
+import postContext from "../../context/posts/postsContext";
 
 const SidePage = props => {
-  const { isLoading } = useContext(userContext);
+  const { isLoading } = useContext(postContext);
   const { removeSidePage } = useContext(pageContext);
   const returnSidePage = () => {
     switch (props.sidePage) {

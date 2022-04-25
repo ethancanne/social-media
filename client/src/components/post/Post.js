@@ -40,11 +40,15 @@ const Post = ({ post }) => {
           />
         }
       />
-      <CardMedia component='img' image={post.image} alt='post' />
+      <CardMedia
+        component='img'
+        image={"data:image/png;charset=utf-8;base64," + post.image}
+        alt='post'
+      />
 
       <CardContent>
         <Typography variant='body2' color='text.secondary'>
-          {post.body}
+          {post.content}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

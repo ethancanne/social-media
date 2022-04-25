@@ -11,6 +11,8 @@ export const userConstants = {
 };
 
 export const postsConstants = {
+  SET_LOADING: "SET_LOADING",
+  CREATE_POST: "CREATE_POST",
   GET_FEED: "GET_FEED",
   GET_USER_POSTS: "GET_USER_POSTS",
 };

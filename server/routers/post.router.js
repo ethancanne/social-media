@@ -17,6 +17,7 @@ import { searchPostsController } from "../controllers/post/searchPosts.controlle
 
 //import the auth middleware
 const { authenticate } = require("../middleware/auth.middleware");
+import { uploadImage } from "../middleware/uploadImage.middleware.js";
 
 /**
  * @description Create Post Route
@@ -24,7 +25,9 @@ const { authenticate } = require("../middleware/auth.middleware");
  * @route       POST /api/signIn
  * @COMMENTS
  */
-router.route(routes.Post.CreatePost).post(authenticate, createPostController);
+router
+  .route(routes.Post.CreatePost)
+  .post(authenticate, uploadImage.single("image"), createPostController);
 
 /**
  * @description Get all the posts of the logged in user route

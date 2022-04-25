@@ -13,6 +13,9 @@ const PostsState = props => {
   const [state, dispatch] = useReducer(postsReducer, initialState);
 
   //ACTIONS
+  //Set Loading
+  const setLoading = () => dispatch({ type: postsConstants.SET_LOADING });
+
   const getFeed = async () => {
     try {
       setLoading();
@@ -40,16 +43,42 @@ const PostsState = props => {
     }
   };
 
-  //TODO: Move search here
+  const createPost = async (title, content, image) => {
+    try {
+      setLoading();
+      //Set up form data
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("content", content);
+      formData.append("image", image);
 
-  //Set Loading
-  const setLoading = () => dispatch({ type: postsConstants.SET_LOADING });
+      const res = await axios.post(Routes.Post.CreatePost, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (res.data.error) throw res.data.error;
+
+      dispatch({
+        type: postsConstants.CREATE_POST,
+        payload: res.data.post,
+      });
+      return res.data.message;
+    } catch (err) {
+      console.log(err.message);
+      throw err.message || err;
+    }
+  };
+
+  //TODO: Move search here
 
   return (
     <postsContext.Provider
       value={{
         getFeed,
         getUserPosts,
+        createPost,
+        isLoading: state.isLoading,
         feed: state.feed,
         userPosts: state.userPosts,
       }}>
