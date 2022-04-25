@@ -22,14 +22,20 @@ const postSchema = new Schema({
   },
   supports: [
     {
-      type: Schema.Types.ObjectId, ref: "User",
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
   ],
   opposes: [
     {
-      type: Schema.Types.ObjectId, ref: "User",
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
   ],
+});
+
+postSchema.pre("find", function () {
+  this.populate({ path: "creator" });
 });
 
 export const Post = mongoose.model("Post", postSchema);

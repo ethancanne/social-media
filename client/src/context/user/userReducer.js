@@ -9,7 +9,7 @@ export default (state, action) => {
         loggedInUser: action.payload.user,
         token: action.payload.token,
         isLoggedIn: true,
-        loading: false,
+        isLoading: false,
       };
 
     case userConstants.SIGN_OUT:
@@ -18,20 +18,20 @@ export default (state, action) => {
         loggedInUser: {},
         token: "",
         isLoggedIn: false,
-        loading: false,
+        isLoading: false,
       };
 
     case userConstants.UPDATE_USER:
       return {
         ...state,
         loggedInUser: action.payload.user,
-        loading: false,
+        isLoading: false,
       };
     case userConstants.GET_PROFILE:
       return {
         ...state,
         showingUserProfile: action.payload.user,
-        loading: false,
+        isLoading: false,
       };
     case userConstants.REMOVE_PROFILE:
       return {
@@ -42,13 +42,13 @@ export default (state, action) => {
           posts: [],
           profilePicture: "",
         },
-        loading: false,
+        isLoading: false,
       };
 
     case userConstants.SET_LOADING:
       return {
         ...state,
-        loading: true,
+        isLoading: true,
       };
 
     default:

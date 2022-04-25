@@ -12,7 +12,7 @@ const UserState = props => {
     loggedInUser: JSON.parse(localStorage.getItem("loggedInUser")) || {},
     token: localStorage.getItem("token") || "",
     isLoggedIn: localStorage.getItem("isLoggedIn") || false,
-    loading: false,
+    isLoading: false,
     showingUserProfile: {
       following: [],
       followers: [],
@@ -194,6 +194,8 @@ const UserState = props => {
       throw err;
     }
   };
+
+  //TODO: move search here
 
   return (
     <userContext.Provider

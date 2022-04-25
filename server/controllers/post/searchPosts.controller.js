@@ -21,12 +21,14 @@ export const searchPostsController = asyncHandler(async (req, res) => {
         },
       ],
     });
+    // posts.populate({ path: "creator" });
 
     return res.send({
       posts,
       message: "Posts retrieved successfully",
     });
-  } catch (err) { console.log(err)
+  } catch (err) {
+    console.log(err);
     //Send errors
     return res.send({
       error: err,

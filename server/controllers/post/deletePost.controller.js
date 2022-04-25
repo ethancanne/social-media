@@ -8,10 +8,8 @@ import { Post } from "../../models/Post"; //TODO: Import the Post model
 //  */
 export const deletePostController = asyncHandler(async (req, res) => {
   const errors = [];
-  const {id} = req.body;
+  const { id } = req.body;
   try {
-    //Create the post in the database using the Post model, and save it
-    //Send the post back to the client
     const post = await Post.findById(id);
     await post.delete();
 
@@ -19,7 +17,8 @@ export const deletePostController = asyncHandler(async (req, res) => {
       post: post,
       message: "Post deleted successfully",
     });
-  } catch (err) { console.log(err)
+  } catch (err) {
+    console.log(err);
     //Send errors
     return res.send({
       error: err,

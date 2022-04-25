@@ -9,7 +9,7 @@ import { sidePages } from "../../pages/sidePage/sidePages";
 
 const UserListView = ({ users }) => {
   const { addSidePage, removeSidePage } = useContext(pageContext);
-  const { getProfile } = useContext(userContext);
+  const { getProfile, isLoading } = useContext(userContext);
   let history = useHistory();
 
   const displayProfilePage = user => {
@@ -18,7 +18,10 @@ const UserListView = ({ users }) => {
   };
   return (
     <div className='user-list-view-container'>
-      {users &&
+      {isLoading ? (
+        <Loading />
+      ) : (
+        users &&
         users.length > 0 &&
         users.map(user => (
           <Button
@@ -37,7 +40,8 @@ const UserListView = ({ users }) => {
             </div>
             <div className='user-item-username'>@{user.username}</div>
           </Button>
-        ))}
+        ))
+      )}
     </div>
   );
 };

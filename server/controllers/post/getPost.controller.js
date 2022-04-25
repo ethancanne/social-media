@@ -8,17 +8,17 @@ import { Post } from "../../models/Post"; //TODO: Import the Post model
 //  */
 export const getPostController = asyncHandler(async (req, res) => {
   const errors = [];
-  const {id} = req.params;
+  const { id } = req.params;
   try {
-    //Create the post in the database using the Post model, and save it
-    //Send the post back to the client
+    //Find the post, send it back to the client
     const post = await Post.findById(id);
 
     return res.send({
       post: post,
       message: "Post retrieved successfully",
     });
-  } catch (err) { console.log(err)
+  } catch (err) {
+    console.log(err);
     //Send errors
     return res.send({
       error: err,

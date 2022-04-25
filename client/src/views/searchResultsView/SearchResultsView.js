@@ -10,10 +10,10 @@ const SearchResultsView = ({ searchTerm, searchType }) => {
   const [users, setUsers] = useState([]);
   useEffect(async () => {
     if (searchType === "posts") {
-      const res = await axios.post(routes.Post.SearchPosts, { searchTerm });
+      const res = await axios.get(routes.Post.SearchPosts + "/" + searchTerm);
       setPosts(res.data.posts);
     } else if (searchType === "users") {
-      const res = await axios.post(routes.User.SearchUsers, { searchTerm });
+      const res = await axios.get(routes.User.SearchUsers + "/" + searchTerm);
       console.log(res.data.users);
       setUsers(res.data.users);
     }
@@ -21,7 +21,7 @@ const SearchResultsView = ({ searchTerm, searchType }) => {
 
   const getCorrectSearchResults = () => {
     if (searchType === "posts") {
-      return <Posts posts={[]} />;
+      return <Posts title={"Search for: " + searchTerm} posts={posts} />;
     } else if (searchType === "users") {
       return <UserListView users={users} />;
     }

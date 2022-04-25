@@ -33,8 +33,9 @@ const Post = ({ post }) => {
         title={post.title}
         avatar={
           <ProfilePicture
-            image={loggedInUser.profilePicture}
+            image={post.creator.profilePicture}
             name={"johh"}
+            isBase64={true}
             size={40}
           />
         }

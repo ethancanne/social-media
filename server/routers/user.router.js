@@ -95,7 +95,9 @@ router
  * @protected
  * @COMMENTS
  */
-router.route(routes.User.SearchUsers).post(authenticate, searchUsersController);
+router
+  .route(routes.User.SearchUsers + "/:searchTerm")
+  .get(authenticate, searchUsersController);
 
 /**
  * @description Edit Profile Route

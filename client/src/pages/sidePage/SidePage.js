@@ -12,7 +12,7 @@ import Loading from "../../components/loading/Loading";
 import userContext from "../../context/user/userContext";
 
 const SidePage = props => {
-  const { loading } = useContext(userContext);
+  const { isLoading } = useContext(userContext);
   const { removeSidePage } = useContext(pageContext);
   const returnSidePage = () => {
     switch (props.sidePage) {
@@ -38,7 +38,7 @@ const SidePage = props => {
       <>
         <div className='side-page-background'> </div>
         <div className='side-page-container'>
-          {loading ? (
+          {isLoading ? (
             <Loading />
           ) : (
             <>

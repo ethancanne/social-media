@@ -1,5 +1,5 @@
 import "./Home.scss";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Page, pages } from "../Page";
 import axios from "axios";
 import Posts from "../../views/home/posts/Posts";
@@ -11,6 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import SearchResultsView from "../../views/searchResultsView/SearchResultsView";
+import postsContext from "../../context/posts/postsContext";
 
 /**
  * Renders the Dashboard of the application.
@@ -22,10 +23,16 @@ const Home = props => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchType, setSearchType] = useState("users");
 
+  const { getFeed, feed } = useContext(postsContext);
+
   const submitSearch = async e => {
     e.preventDefault();
     console.log(searchTerm);
   };
+
+  useEffect(() => {
+    getFeed();
+  }, [searchTerm]);
 
   return (
     <Page currentPage={pages.HOME}>
@@ -55,7 +62,7 @@ const Home = props => {
         {searchTerm === "" ? (
           <>
             <div className='home-posts-container'>
-              <Posts title='Your feed' />
+              <Posts title='Your feed' posts={feed} />
             </div>
           </>
         ) : (

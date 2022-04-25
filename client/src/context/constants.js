@@ -10,6 +10,11 @@ export const userConstants = {
   UPDATE_USER: "UPDATE_USER",
 };
 
+export const postsConstants = {
+  GET_FEED: "GET_FEED",
+  GET_USER_POSTS: "GET_USER_POSTS",
+};
+
 export const pageConstants = {
   SHOW_NOTIFICATION: "SHOW_NOTIFICATION",
   REMOVE_NOTIFICATION: "REMOVE_NOTIFICATION",

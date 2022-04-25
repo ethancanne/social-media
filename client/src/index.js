@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App.js";
 import UserState from "./context/user/UserState";
 import PageState from "./context/page/PageState";
+import PostsState from "./context/posts/PostsState";
 import axios from "axios";
 
 axios.interceptors.request.use(config => {
@@ -15,7 +16,9 @@ ReactDOM.render(
   <React.StrictMode>
     <PageState>
       <UserState>
-        <App />
+        <PostsState>
+          <App />
+        </PostsState>
       </UserState>
     </PageState>
   </React.StrictMode>,

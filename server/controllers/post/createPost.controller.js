@@ -10,8 +10,6 @@ export const createPostController = asyncHandler(async (req, res) => {
   const { title, content, image } = req.body;
   const errors = [];
   try {
-    //Create the post in the database using the Post model, and save it
-    //Send the post back to the client
     const newPost = new Post({
       title,
       content,

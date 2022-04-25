@@ -10,7 +10,7 @@ import { User } from "../../models/User";
 //  */
 export const searchUsersController = asyncHandler(async (req, res) => {
   try {
-    const { searchTerm } = req.body;
+    const { searchTerm } = req.params;
     //Search for users using the search term
     const users = await User.find({
       $or: [
