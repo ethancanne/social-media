@@ -51,9 +51,11 @@ const Post = ({ post }) => {
         <IconButton aria-label='support'>
           <ThumbsUpIcon />
         </IconButton>
+        <div className="supportcount">{post.supports.length}</div>
         <IconButton aria-label='oppose'>
           <ThumbsDownIcon />
         </IconButton>
+        <div className="opposecount">{post.opposes.length}</div>
       </CardActions>
     </Card>
   );

@@ -32,7 +32,7 @@ const GeneralSettingsView = () => {
         <div className='settings-item-left'>
           <LockIcon />
           <h1>Change Password</h1>
-          <p>If you know your previous password, you can change t</p>
+          <p>If you know your previous password, you can change it here</p>
         </div>
         <div className='settings-item-right'>
           <ArrowIcon />
