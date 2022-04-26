@@ -8,7 +8,7 @@ import UserListView from "../../../views/userListView/UserListView";
 const FollowingSidePage = ({ userId }) => {
   const [following, setFollowing] = useState([]);
   const getFollowing = async () => {
-    const res = await axios.get(routes.User.GetFollowing + "/" + userId);
+    const res = await axios.get("/api/getFollowing" + "/" + userId);
     setFollowing(res.data.following);
   };
 

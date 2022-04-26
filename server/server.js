@@ -1,6 +1,8 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import path from "path";
 import express from "express";
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 import connectDb from "./db";
 
 import userRouter from "./routers/user.router";
@@ -9,7 +11,7 @@ import postRouter from "./routers/post.router";
 const app = express();
 
 // get config vars
-dotenv.config();
+// dotenv.config();
 //Connect to database
 connectDb();
 

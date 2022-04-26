@@ -1,14 +1,13 @@
 import "./FollowersSidePage.scss";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import routes from "../../../../routes";
 import UserListView from "../../../views/userListView/UserListView";
 
 const FollowersSidePage = ({ userId }) => {
   const [followers, setFollowers] = useState([]);
   const getFollowing = async () => {
     console.log(userId);
-    const res = await axios.get(routes.User.GetFollowers + "/" + userId);
+    const res = await axios.get("/api/getFollowers" + "/" + userId);
     setFollowers(res.data.followers);
   };
 

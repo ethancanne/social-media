@@ -1,6 +1,5 @@
 import asyncHandler from "express-async-handler";
 import { Post } from "../../models/Post"; //TODO: Import the Post model
-import { restart } from "nodemon";
 
 // /**
 //  * @description A controller that will create a post in the database and send it back to the client

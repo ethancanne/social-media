@@ -1,7 +1,6 @@
 import React, { useReducer } from "react";
 import axios from "axios";
 import pageContext from "./pageContext";
-import Routes from "../../../routes.js";
 
 import { pageConstants } from "../constants";
 import pageReducer from "./pageReducer";

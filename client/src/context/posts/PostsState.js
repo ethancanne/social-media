@@ -3,8 +3,6 @@ import axios from "axios";
 import postsReducer from "./postsReducer";
 import postsContext from "./postsContext";
 
-import Routes from "../../../routes.js";
-
 import { postsConstants } from "../constants";
 
 const PostsState = props => {
@@ -19,7 +17,7 @@ const PostsState = props => {
   const getFeed = async () => {
     try {
       setLoading();
-      const res = await axios.get(Routes.Post.GetFollowingPosts);
+      const res = await axios.get("/api/getFollowingPosts");
       dispatch({
         type: postsConstants.GET_FEED,
         payload: res.data.posts,
@@ -32,7 +30,7 @@ const PostsState = props => {
   const getUserPosts = async id => {
     try {
       setLoading();
-      const res = await axios.get(Routes.Post.GetUserPosts + "/" + id);
+      const res = await axios.get("/api/getUserPosts" + "/" + id);
       dispatch({
         type: postsConstants.GET_USER_POSTS,
         payload: res.data.posts,
@@ -52,7 +50,7 @@ const PostsState = props => {
       formData.append("content", content);
       formData.append("image", image);
 
-      const res = await axios.post(Routes.Post.CreatePost, formData, {
+      const res = await axios.post("/api/createPost", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

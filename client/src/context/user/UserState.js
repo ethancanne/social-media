@@ -3,8 +3,6 @@ import axios from "axios";
 import userReducer from "./userReducer";
 import userContext from "./userContext";
 
-import Routes from "../../../routes.js";
-
 import { userConstants } from "../constants";
 
 const UserState = props => {
@@ -34,7 +32,7 @@ const UserState = props => {
     console.log(email, password);
 
     try {
-      const res = await axios.post(Routes.User.SignIn, { email, password });
+      const res = await axios.post("/api/signIn", { email, password });
       if (res.data.error) throw res.data.error;
 
       const user = res.data.user;
@@ -78,7 +76,7 @@ const UserState = props => {
       formData.append("password", password);
       formData.append("confirmPassword", confirmPassword);
       formData.append("profilePicture", profilePicture);
-      const res = await axios.post(Routes.User.SignUp, formData, {
+      const res = await axios.post("/api/signUp", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -118,7 +116,7 @@ const UserState = props => {
   const getProfile = async username => {
     setLoading();
     try {
-      const res = await axios.get(Routes.User.GetUser + "/" + username);
+      const res = await axios.get("/api/getUser" + "/" + username);
       if (res.data.error) throw res.data.error;
 
       const user = res.data.user;
@@ -142,7 +140,7 @@ const UserState = props => {
   const toggleFollower = async id => {
     setLoading();
     try {
-      const res = await axios.post(Routes.User.ToggleFollower + "/" + id);
+      const res = await axios.post("/api/toggleFollower" + "/" + id);
       if (res.data.error) throw res.data.error;
 
       dispatch({
@@ -175,7 +173,7 @@ const UserState = props => {
       formData.append("bio", bio);
       formData.append("profilePicture", profilePicture);
 
-      const res = await axios.put(Routes.User.EditProfile, formData, {
+      const res = await axios.put("/api/editProfile", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           "max-http-header-size": Infinity,
@@ -204,7 +202,7 @@ const UserState = props => {
     setLoading();
     try {
       //Set up form data
-      const res = await axios.put(Routes.User.ChangePassword, {
+      const res = await axios.put("/api/changePassword", {
         currentPassword,
         newPassword,
         confirmNewPassword,
