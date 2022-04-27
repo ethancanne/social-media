@@ -68,6 +68,30 @@ const PostsState = props => {
     }
   };
 
+  const supportPost = async postId => {
+    try {
+      const res = await axios.put("/api/supportPost", { postId });
+      if (res.data.error) throw res.data.error;
+
+      return res.data;
+    } catch (err) {
+      console.log(err.message);
+      throw err.message || err;
+    }
+  };
+
+  const opposePost = async postId => {
+    try {
+      const res = await axios.put("/api/opposePost", { postId });
+      if (res.data.error) throw res.data.error;
+
+      return res.data;
+    } catch (err) {
+      console.log(err.message);
+      throw err.message || err;
+    }
+  };
+
   //TODO: Move search here
 
   return (
@@ -76,6 +100,8 @@ const PostsState = props => {
         getFeed,
         getUserPosts,
         createPost,
+        supportPost,
+        opposePost,
         isLoading: state.isLoading,
         feed: state.feed,
         userPosts: state.userPosts,

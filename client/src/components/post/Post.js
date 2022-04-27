@@ -13,10 +13,13 @@ import ProfilePicture from "../profilePicture/ProfilePicture";
 import pageContext from "../../context/page/pageContext";
 import { sidePages } from "../../pages/sidePage/sidePages";
 import userContext from "../../context/user/userContext";
+import { notificationTypes } from "../../views/notification/NotificationTypes";
+import postsContext from "../../context/posts/postsContext";
+import PostActions from "./PostActions";
 
 const Post = ({ post }) => {
-  const { addSidePage } = useContext(pageContext);
-  const { loggedInUser } = useContext(userContext);
+  const { addSidePage, showNotification } = useContext(pageContext);
+
   return (
     <Card
       sx={{
@@ -28,7 +31,6 @@ const Post = ({ post }) => {
         overflow: "visible",
         cursor: "pointer",
       }}
-      onClick={() => addSidePage(sidePages.VIEW_POST, { post })}
       variant='outlined'>
       <CardHeader
         title={post.title}
@@ -45,22 +47,16 @@ const Post = ({ post }) => {
         component='img'
         image={"data:image/png;charset=utf-8;base64," + post.image}
         alt='post'
+        onClick={() => addSidePage(sidePages.VIEW_POST, { post })}
       />
 
-      <CardContent>
+      <CardContent onClick={() => addSidePage(sidePages.VIEW_POST, { post })}>
         <Typography variant='body2' color='text.secondary'>
           {post.content}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label='support'>
-          <ThumbsUpIcon />
-        </IconButton>
-        <div className='supportcount'>{post.supports.length}</div>
-        <IconButton aria-label='oppose'>
-          <ThumbsDownIcon />
-        </IconButton>
-        <div className='opposecount'>{post.opposes.length}</div>
+        <PostActions post={post} />
       </CardActions>
     </Card>
   );

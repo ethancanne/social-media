@@ -1,32 +1,43 @@
 import React from "react";
 import "./ViewPostSidePage.scss";
-import ThumbsUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbsDownIcon from "@mui/icons-material/ThumbDown";
-import IconButton from "@mui/material/IconButton";
+import PostActions from "../../../components/post/PostActions";
+import ProfilePicture from "../../../components/profilePicture/ProfilePicture";
 
 const ViewPostSidePage = ({ post }) => {
   return (
-    <div>
-      <div className='title'>{post.title}</div>
-      <div className='time'>
-        {new Date(post.createdAt).toLocaleDateString("en-us")}
+    <>
+      <div className='post-view-container'>
+        <div className='title'>{post.title}</div>
+
+        <img
+          className='picture'
+          src={"data:image/png;charset=utf-8;base64," + post.image}
+        />
+        <div className='body'>{post.content}</div>
+        <div className='counts'>
+          <PostActions post={post} />
+        </div>
       </div>
-      <img
-        className='picture'
-        src={"data:image/png;charset=utf-8;base64," + post.image}
-      />
-      <div className='body'>{post.content}</div>
-      <div className='counts'>
-        <IconButton>
-          <ThumbsUpIcon />
-        </IconButton>
-        <div className='supportcount'>{post.supports.length}</div>
-        <IconButton>
-          <ThumbsDownIcon />
-        </IconButton>
-        <div className='opposecount'>{post.opposes.length}</div>
+      <div className='creator-info'>
+        <div className='creator-name'>{post.creator.name}</div>
+        <div className='creator-left'>
+          <div className='creator-profile-picture'>
+            <ProfilePicture
+              image={post.creator.profilePicture}
+              name={post.creator.fullName}
+              isBase64={true}
+            />
+          </div>
+          <h1 className='creator-full-name'>{post.creator.fullName}</h1>
+          <div className='creator-username'>@{post.creator.username}</div>
+        </div>
+        <div className='creator-right'>
+          <div className='post-timestamp'>
+            {new Date(post.createdAt).toLocaleDateString("en-us")}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

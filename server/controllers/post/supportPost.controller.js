@@ -8,14 +8,23 @@ import { Post } from "../../models/Post"; //TODO: Import the Post model
 //  */
 export const supportPostController = asyncHandler(async (req, res) => {
   const errors = [];
-  const { id } = req.body;
+  const { postId } = req.body;
   try {
-    const post = await Post.findById(id);
+    const post = await Post.findById(postId);
+    var didAddSupport = false;
 
-    post.supports.push(req.user._id);
+    if (post.supports.includes(req.user._id))
+      post.supports = post.supports.filter(
+        supportedUserId => supportedUserId.toString() != req.user._id.toString()
+      );
+    else {
+      post.supports.push(req.user._id);
+      didAddSupport = true;
+    }
     await post.save();
+    console.log(post.supports.length);
 
-    return res.send({ post });
+    return res.send({ post, didAddSupport });
   } catch (err) {
     console.log(err);
     //Send errors

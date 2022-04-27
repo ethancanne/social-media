@@ -12,7 +12,10 @@ export const createPostController = asyncHandler(async (req, res) => {
   const errors = [];
   try {
     // Resize the profile picture and convert it to a png
-    const image = await sharp(req.file.buffer).png().toBuffer();
+    const image = await sharp(req.file.buffer)
+      .png()
+      .resize(300, 300)
+      .toBuffer();
 
     // Encode the picture to base64 and store it in db
     const encoded = image.toString("base64");

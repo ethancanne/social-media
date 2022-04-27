@@ -8,14 +8,25 @@ import { Post } from "../../models/Post"; //TODO: Import the Post model
 //  */
 export const opposePostController = asyncHandler(async (req, res) => {
   const errors = [];
-  const { id } = req.body;
+  const { postId } = req.body;
   try {
-    const post = await Post.findById(id);
+    const post = await Post.findById(postId);
+    var didAddOppose = false;
+    //if the user has already opposes the post, remove the user from the opposes array, otherwise add the user to the opposes array
+    if (post.opposes.includes(req.user._id))
+      post.opposes = post.opposes.filter(
+        opposedUserId => opposedUserId.toString() != req.user._id.toString()
+      );
+    else {
+      post.opposes.push(req.user._id);
+      didAddOppose = true;
+    }
 
-    post.opposes.push(req.user._id);
+    console.log(post.opposes.length);
+
     await post.save();
 
-    return res.send({ post });
+    return res.send({ post, didAddOppose });
   } catch (err) {
     console.log(err);
     //Send errors

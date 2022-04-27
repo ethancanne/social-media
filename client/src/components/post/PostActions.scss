@@ -1,0 +1,11 @@
+.post-actions-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .action-item {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

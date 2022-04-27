@@ -1,44 +1,80 @@
-.title {
-  font-weight: bolder;
-  font-size: 1.7em;
-  padding-bottom: 4px;
+@import "../../../globals.scss";
+.post-view-container {
+  position: relative;
+  padding: 20px;
+  padding-bottom: 60px;
+
+  .title {
+    font-weight: bolder;
+    font-size: 2em;
+    color: $textColor;
+    padding: 20px 40px 40px 0;
+  }
+
+  .picture {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 70%;
+    height: 70%;
+
+    border: 2px solid #d5d5d5;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .body {
+    color: rgb(67, 67, 67);
+    margin-top: 4px;
+    width: 100%;
+    padding: 40px 40px 40px 0;
+    border-bottom: #d5d5d5 1px solid;
+  }
 }
 
-.time {
-  color: gray;
-  padding-bottom: 10px;
-}
-
-.picture {
-  padding-top: 5px;
-  padding-bottom: 5px;
+.creator-info {
+  position: fixed;
+  bottom: 0;
   width: 70%;
-  height: 70%;
-
-  border: 2px solid #d5d5d5;
+  background-color: #f5f5f5b8;
+  backdrop-filter: blur(10px);
   padding: 10px;
-  border-radius: 5px;
-}
-
-.body {
-  color: rgb(67, 67, 67);
-  margin-top: 4px;
-  width: 60%;
-  padding-top: 30px;
-}
-
-.counts {
-  margin-top: 15px;
+  border-top: 1px solid #d5d5d5;
   display: flex;
-}
+  justify-content: space-between;
+  align-items: center;
 
-.supportcount {
-  padding-left: 5px;
-  padding-right: 15px;
-  padding-top: 8px;
-}
+  .creator-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    .creator-profile-picture {
+      margin-right: 40px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .creator-full-name {
+      font-weight: bolder;
+      font-size: 1.2em;
+      margin-right: 10px;
+    }
+    .creator-username {
+      font-size: 15px;
+      font-weight: 300;
+      text-align: center;
+      color: $secondaryTextColor;
+    }
+  }
+  .creator-right {
+    flex: 1;
+    display: flex;
+    justify-content: end;
 
-.opposecount {
-  padding-left: 4px;
-  padding-top: 8px;
+    .post-timestamp {
+      font-size: 0.8em;
+      color: gray;
+    }
+  }
 }
