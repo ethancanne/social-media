@@ -13,7 +13,7 @@ services:
       - api-server-prod
     tty: true
     links:
-      - api-server
+      - api-server-prod
 
   api-server-prod:
     build:
