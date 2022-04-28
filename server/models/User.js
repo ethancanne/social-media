@@ -31,6 +31,10 @@ const userSchema = new Schema({
     type: String,
     default: "I am a new user",
   },
+  isDarkModeEnabled: {
+    type: Boolean,
+    default: false,
+  },
   posts: [
     {
       type: Schema.Types.ObjectId,

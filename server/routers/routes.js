@@ -10,6 +10,7 @@ export default {
     SearchUsers: "/api/search/users",
     EditProfile: "/api/editProfile",
     ChangePassword: "/api/changePassword",
+    enableDarkMode: "/api/enableDarkMode",
   },
   Post: {
     CreatePost: "/api/createPost",
