@@ -1,4 +1,8 @@
 build:
   docker:
-    web: ./server/Dockerfile.prod
-    worker: ./client/Dockerfile.prod
+    web: ./client/Dockerfile.prod
+    worker: ./server/Dockerfile.prod
+
+run:
+  web: nginx -g daemon off;
+  worker: npm start
