@@ -1,11 +1,12 @@
-.postContainer {
-  background-color: white;
-  padding: 5px;
-
-
-}
-
-.postTitle {
-  font-weight: bolder;
-  font-size: 1.3em;
+@import "../../globals.scss";
+.post-card {
+  @include themify() {
+    color: themed("textColor") !important;
+    background-color: themed("accentBgColor") !important;
+  }
+  .post-content {
+    @include themify() {
+      color: themed("textColor") !important;
+    }
+  }
 }

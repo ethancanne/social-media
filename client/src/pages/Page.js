@@ -34,7 +34,10 @@ export const Page = ({ showSideBar = true, children, currentPage }) => {
   return (
     <div className='page'>
       {showSideBar && (
-        <div className='side-bar'>
+        <div
+          className={
+            loggedInUser.isDarkModeEnabled ? "side-bar dark-mode" : "side-bar"
+          }>
           <Link to='/' style={{ textDecoration: "none", color: "black" }}>
             <div className='side-bar-header'>
               <Logo />

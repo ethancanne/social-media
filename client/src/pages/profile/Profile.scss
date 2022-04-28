@@ -10,8 +10,10 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    border-bottom: $secondaryTextColor 1px solid;
-    background-color: white;
+    @include themify() {
+      border-bottom: themed("secondaryTextColor") 1px solid;
+      background-color: themed("accentBgColor");
+    }
     // padding: 30px;
 
     padding-top: 20px;
@@ -26,28 +28,38 @@
         font-size: 30px;
         margin-bottom: 10px;
         font-weight: 500;
-        color: $textColor;
+
+        @include themify() {
+          color: themed("textColor");
+        }
         text-align: center;
       }
       .user-info-username {
         font-size: 15px;
         font-weight: 300;
         text-align: center;
-        color: $secondaryTextColor;
+        @include themify() {
+          color: themed("secondaryTextColor");
+        }
       }
       .user-info-bio {
         font-size: 15px;
         font-weight: 300;
         text-align: left;
         padding: 20px 0 20px 0;
-        color: $textColor;
+        @include themify() {
+          color: themed("textColor");
+        }
         max-width: 70vw;
         word-wrap: break-word;
       }
     }
     .stats-container {
       flex: 0.4;
-      border-top: 1px solid whitesmoke;
+
+      @include themify() {
+        border-top: 1px solid themed("bgColor");
+      }
       padding-top: 20px;
       width: 100%;
       display: flex;
@@ -68,20 +80,26 @@
         .stat-button {
           text-decoration: none;
           text-transform: none;
-          color: $textColor;
+          @include themify() {
+            color: themed("textColor");
+          }
         }
 
         h1 {
           font-size: 17px;
           font-weight: 900;
-          color: $textColor;
+          @include themify() {
+            color: themed("textColor");
+          }
           text-align: left;
           padding-right: 20px;
         }
         p {
           font-size: 15px;
 
-          color: $textColor;
+          @include themify() {
+            color: themed("textColor");
+          }
           text-align: left;
         }
       }
@@ -102,5 +120,8 @@
     height: 100%;
     // margin-left: 40px;
     overflow: hidden;
+    @include themify() {
+      background-color: themed("bgColor");
+    }
   }
 }

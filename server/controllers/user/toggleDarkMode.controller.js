@@ -1,5 +1,4 @@
 //Make a controller that will toggle dark mode for a user
-import { dark } from "@mui/material/styles/createPalette";
 import asyncHandler from "express-async-handler";
 import { User } from "../../models/User";
 
@@ -11,8 +10,8 @@ export const toggleDarkModeController = asyncHandler(async (req, res) => {
 
     req.user.isDarkModeEnabled = !req.user.isDarkModeEnabled;
     message =
-      "Dark Mode is " + req.user.isDarkModeEnabled ? "enabled" : "disabled";
-    console.log("darkmode changed");
+      "Dark Mode is " + (req.user.isDarkModeEnabled ? "enabled" : "disabled");
+    console.log(message);
 
     await req.user.save();
 

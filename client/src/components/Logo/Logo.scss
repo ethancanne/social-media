@@ -4,7 +4,9 @@
   font-weight: 900;
   height: 100px;
   padding-top: 20px;
-  color: $accentColor;
+  @include themify() {
+    color: themed("accentColor");
+  }
   overflow: visible;
 
   &.large {
@@ -18,7 +20,9 @@
     display: block;
     width: 30px;
     height: 3px;
-    background-color: $accentColor;
+    @include themify() {
+      background-color: themed("accentColor");
+    }
     margin-bottom: 10px;
   }
 }

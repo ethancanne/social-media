@@ -1,6 +1,10 @@
+@import "../../../globals.scss";
 .edit-profile-form {
   display: flex;
-  background-color: rgb(251, 251, 251);
+
+  @include themify() {
+    background-color: themed("bgColor");
+  }
   box-shadow: 0 0 0 1px rgba(89, 105, 129, 0.143),
     0 3px 20px 0 rgba(89, 105, 129, 0.019), 0 1px 2px 0 rgba(0, 0, 0, 0.14);
 
@@ -16,12 +20,39 @@
     margin: 20px;
 
     width: 100%;
-
     overflow: visible;
+    p {
+      font-size: 15px;
+      font-weight: 300;
+      margin-bottom: 10px;
+      cursor: pointer;
+      @include themify() {
+        color: themed("secondaryTextColor");
+      }
+      text-decoration: none;
+
+      transition: all 0.5s;
+    }
+
+    input {
+      @include themify() {
+        color: themed("textColor") !important;
+      }
+    }
+
+    label {
+      @include themify() {
+        color: themed("textColor") !important;
+      }
+    }
   }
 
   .bio-content {
-    border: 2px solid #d5d5d5;
+    @include themify() {
+      border: 1px solid themed("textColor");
+      background-color: themed("bgColor");
+      color: themed("textColor");
+    }
     padding: 10px;
     border-radius: 5px;
     width: 100%;

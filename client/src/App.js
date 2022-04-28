@@ -35,8 +35,7 @@ import { sidePages } from "./pages/sidePage/sidePages";
  * @date   1/30/2022
  */
 const App = props => {
-  const [user, setUser] = useState(null);
-  const { isLoggedIn } = useContext(userContext);
+  const { isLoggedIn, loggedInUser } = useContext(userContext);
   const { showingSidePages } = useContext(pageContext);
   const { addSidePage } = useContext(pageContext);
 
@@ -48,7 +47,10 @@ const App = props => {
 
   return (
     <Router>
-      <div className='app'>
+      <div
+        className={`app theme-${
+          loggedInUser.isDarkModeEnabled ? "dark" : "light"
+        }`}>
         <Notification />
         {showingSidePages.map((showingSidePage, index) => (
           <SidePage

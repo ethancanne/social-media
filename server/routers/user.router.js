@@ -10,7 +10,7 @@ import { getFollowingController } from "../controllers/user/getFollowing.control
 import { searchUsersController } from "../controllers/user/searchUsers.controller";
 import { editProfileController } from "../controllers/user/editProfile.controller";
 import { changePasswordController } from "../controllers/user/changePassword.controller";
-
+import { toggleDarkModeController } from "../controllers/user/toggleDarkMode.controller";
 //import middleware
 const { authenticate } = require("../middleware/auth.middleware");
 const { uploadImage } = require("../middleware/uploadImage.middleware");
@@ -125,5 +125,16 @@ router
 router
   .route(routes.User.ChangePassword)
   .put(authenticate, changePasswordController);
+
+/**
+ * @description Toggle dark mode route
+ * @access      Private
+ * @route       Get /api/toggleDarkMode
+ * @protected
+ * @COMMENTS
+ */
+router
+  .route(routes.User.ToggleDarkMode)
+  .put(authenticate, toggleDarkModeController);
 
 export default router;

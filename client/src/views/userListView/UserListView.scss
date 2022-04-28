@@ -8,7 +8,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    color: $accentColor;
+
+    @include themify() {
+      color: themed("accentColor");
+    }
 
     text-decoration: none;
     text-transform: none;
@@ -28,7 +31,10 @@
       .user-item-fullname {
         font-size: 15px;
         font-weight: 500;
-        color: $textColor;
+
+        @include themify() {
+          color: themed("textColor");
+        }
         margin-left: 30px;
       }
     }
@@ -36,7 +42,10 @@
     .user-item-username {
       font-size: 15px;
       font-weight: 300;
-      color: $secondaryTextColor;
+
+      @include themify() {
+        color: themed("secondaryTextColor");
+      }
     }
   }
 }

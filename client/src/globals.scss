@@ -1,5 +1,58 @@
 //Declare global variables
 //purple color
-$accentColor: rgb(160, 124, 247);
-$textColor: rgb(39, 58, 107);
-$secondaryTextColor: rgb(166, 183, 221);
+
+$accentColorLightMode: rgb(160, 124, 247);
+$accentColorDarkMode: rgb(205, 182, 255);
+
+$textColorLightMode: rgb(39, 58, 107);
+$textColorDarkMode: rgb(255, 255, 255);
+
+$secondaryTextColorLightMode: rgb(166, 183, 221);
+$secondaryTextColorDarkMode: rgb(255, 255, 255);
+
+$bgColorLightMode: rgb(251, 251, 251);
+$bgColorDarkMode: rgb(21, 26, 39);
+$accentBgColorLightMode: white;
+$accentBgColorDarkMode: black;
+
+// theme-config.scss
+$themes: (
+  light: (
+    accentColor: $accentColorLightMode,
+    textColor: $textColorLightMode,
+    secondaryTextColor: $secondaryTextColorLightMode,
+    accentBgColor: $accentBgColorLightMode,
+    bgColor: $bgColorLightMode,
+  ),
+  dark: (
+    accentColor: $accentColorDarkMode,
+    textColor: $textColorDarkMode,
+    secondaryTextColor: $secondaryTextColorDarkMode,
+    accentBgColor: $accentBgColorDarkMode,
+    bgColor: $bgColorDarkMode,
+  ),
+);
+
+// mixin.scss
+@mixin themify() {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), "#{$key}");
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}

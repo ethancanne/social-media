@@ -7,7 +7,9 @@
   .title {
     font-weight: bolder;
     font-size: 2em;
-    color: $textColor;
+    @include themify() {
+      color: themed("textColor");
+    }
     padding: 20px 40px 40px 0;
   }
 
@@ -28,6 +30,9 @@
     width: 100%;
     padding: 40px 40px 40px 0;
     border-bottom: #d5d5d5 1px solid;
+    @include themify() {
+      color: themed("textColor");
+    }
   }
 }
 
@@ -35,7 +40,9 @@
   position: fixed;
   bottom: 0;
   width: 70%;
-  background-color: #f5f5f5b8;
+  @include themify() {
+    background-color: themed("bgColor");
+  }
   backdrop-filter: blur(10px);
   padding: 10px;
   border-top: 1px solid #d5d5d5;
@@ -59,12 +66,18 @@
       font-weight: bolder;
       font-size: 1.2em;
       margin-right: 10px;
+      @include themify() {
+        color: themed("textColor");
+      }
     }
     .creator-username {
       font-size: 15px;
       font-weight: 300;
       text-align: center;
-      color: $secondaryTextColor;
+
+      @include themify() {
+        color: themed("secondaryTextColor");
+      }
     }
   }
   .creator-right {
@@ -74,7 +87,9 @@
 
     .post-timestamp {
       font-size: 0.8em;
-      color: gray;
+      @include themify() {
+        color: themed("secondaryTextColor");
+      }
     }
   }
 }

@@ -24,16 +24,17 @@ const Post = ({ post }) => {
     <Card
       sx={{
         width: "500px",
-        backgroundColor: "white",
         borderRadius: "0px",
         margin: "5px",
         marginBottom: "40px",
         overflow: "visible",
         cursor: "pointer",
       }}
+      className='post-card'
       variant='outlined'>
       <CardHeader
         title={post.title}
+        onClick={() => addSidePage(sidePages.VIEW_POST, { post })}
         avatar={
           <ProfilePicture
             image={post.creator.profilePicture}
@@ -50,10 +51,10 @@ const Post = ({ post }) => {
         onClick={() => addSidePage(sidePages.VIEW_POST, { post })}
       />
 
-      <CardContent onClick={() => addSidePage(sidePages.VIEW_POST, { post })}>
-        <Typography variant='body2' color='text.secondary'>
-          {post.content}
-        </Typography>
+      <CardContent
+        onClick={() => addSidePage(sidePages.VIEW_POST, { post })}
+        className='post-content'>
+        <Typography variant='body2'>{post.content}</Typography>
       </CardContent>
       <CardActions disableSpacing>
         <PostActions post={post} />

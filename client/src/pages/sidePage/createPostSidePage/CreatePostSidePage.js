@@ -42,6 +42,7 @@ const CreatePostSidePage = () => {
           color='secondary'
           className='create-post-input'
         />
+        <p>Post Content</p>
         <TextareaAutosize
           onChange={e => setContent(e.target.value)}
           value={content}

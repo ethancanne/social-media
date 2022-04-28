@@ -38,7 +38,11 @@ const Home = props => {
     <Page currentPage={pages.HOME}>
       <div className='home-page'>
         <form className='search-bar' onSubmit={submitSearch}>
-          <IconButton type='submit' sx={{ p: "10px" }} aria-label='search'>
+          <IconButton
+            type='submit'
+            sx={{ p: "10px" }}
+            aria-label='search'
+            className='search-icon'>
             <SearchIcon />
           </IconButton>
           <InputBase

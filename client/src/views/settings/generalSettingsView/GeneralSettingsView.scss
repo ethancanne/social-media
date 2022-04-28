@@ -14,7 +14,10 @@
     text-decoration: none;
     text-transform: none;
     text-align: left;
-    color: $accentColor;
+
+    @include themify() {
+      color: themed("accentColor");
+    }
 
     .settings-item-left {
       display: flex;
@@ -25,7 +28,9 @@
       h1 {
         font-size: 16px;
         font-weight: 500;
-        color: $textColor;
+        @include themify() {
+          color: themed("textColor");
+        }
         max-width: 150px;
         margin-left: 10px;
       }
@@ -35,7 +40,10 @@
         text-align: left;
         padding: 10px;
         width: 400px;
-        color: $secondaryTextColor;
+
+        @include themify() {
+          color: themed("secondaryTextColor");
+        }
       }
     }
     .settings-item-right {

@@ -156,6 +156,25 @@ const UserState = props => {
     }
   };
 
+  const toggleDarkMode = async id => {
+    setLoading();
+    try {
+      const res = await axios.put("/api/toggleDarkMode");
+      if (res.data.error) throw res.data.error;
+
+      dispatch({
+        type: userConstants.UPDATE_USER,
+        payload: { user: res.data.user },
+      });
+
+      localStorage.setItem("loggedInUser", JSON.stringify(res.data.user));
+
+      return res.data.message;
+    } catch (err) {
+      throw err.message || err;
+    }
+  };
+
   const editProfile = async (
     fullName,
     username,
@@ -230,6 +249,7 @@ const UserState = props => {
         getProfile: getProfile,
         removeProfile: removeProfile,
         toggleFollower: toggleFollower,
+        toggleDarkMode: toggleDarkMode,
         editProfile: editProfile,
         changePassword: changePassword,
       }}>

@@ -1,3 +1,4 @@
+@import "../../globals.scss";
 .home-page {
   .search-bar {
     width: 100%;
@@ -7,15 +8,47 @@
     align-items: center;
 
     z-index: 50;
-    background-color: rgb(255, 255, 255);
+    @include themify() {
+      background-color: themed("accentBgColor");
+      color: themed("textColor");
+    }
 
     border-bottom: #e0e0e0 1px solid;
 
     .search-type-field {
       flex: 0.3;
+      @include themify() {
+        color: themed("textColor");
+      }
     }
-    .search-input {
+
+    button {
+      @include themify() {
+        color: themed("textColor") !important;
+      }
+    }
+    input {
       flex: 0.7;
+      @include themify() {
+        color: themed("textColor") !important;
+      }
+    }
+
+    select {
+      @include themify() {
+        color: themed("textColor") !important;
+      }
+    }
+
+    .MuiSelect-select {
+      @include themify() {
+        color: themed("textColor") !important;
+      }
+    }
+    .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon {
+      @include themify() {
+        color: themed("textColor") !important;
+      }
     }
   }
   .home-posts-container {

@@ -1,3 +1,4 @@
+@import "../../../globals.scss";
 .create-post-form {
   display: flex;
 
@@ -12,14 +13,42 @@
   margin: 0 40px;
 
   > * {
-    margin: 10px;
-    width: 100%;
+    margin: 20px;
 
+    width: 100%;
     overflow: visible;
+    p {
+      font-size: 15px;
+      font-weight: 300;
+      margin-bottom: 10px;
+      cursor: pointer;
+      @include themify() {
+        color: themed("secondaryTextColor");
+      }
+      text-decoration: none;
+
+      transition: all 0.5s;
+    }
+
+    input {
+      @include themify() {
+        color: themed("textColor") !important;
+      }
+    }
+
+    label {
+      @include themify() {
+        color: themed("textColor") !important;
+      }
+    }
   }
 
   .create-post-content {
-    border: 2px solid #d5d5d5;
+    @include themify() {
+      border: 1px solid themed("textColor");
+      background-color: themed("bgColor");
+      color: themed("textColor");
+    }
     padding: 10px;
     border-radius: 5px;
   }

@@ -46,8 +46,8 @@ const EditProfileView = () => {
         <TextField
           onChange={e => setFullName(e.target.value)}
           value={fullName}
-          label='Full Name'
           variant='outlined'
+          label='Full Name'
           color='secondary'
         />
 
