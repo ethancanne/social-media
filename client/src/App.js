@@ -15,7 +15,6 @@ import userContext from "./context/user/userContext";
 import Home from "./pages/home/Home";
 
 //Import views
-import views from "./views/views";
 import Authenticate from "./pages/authenticate/Authenticate";
 import Profile from "./pages/profile/Profile";
 import Settings from "./pages/settings/Settings";
