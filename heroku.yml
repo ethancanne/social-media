@@ -2,3 +2,7 @@ build:
   docker:
     server: ./server/Dockerfile.prod
     client: ./client/Dockerfile.prod
+
+run:
+  server: npm start
+  client: nginx -g daemon off;
