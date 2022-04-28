@@ -1,6 +1,3 @@
-setup:
-  config:
-    env-file: .env
 build:
   docker:
     client: ./client/Dockerfile.prod
