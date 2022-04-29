@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../components/logo/Logo";
+import Logo from "../components/logo/Logo.js";
 import ProfilePicture from "../components/profilePicture/ProfilePicture";
 import userContext from "../context/user/userContext";
 import notificationContext from "../context/page/pageContext";

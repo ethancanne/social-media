@@ -4,7 +4,7 @@ import SignUp from "../../views/auth/signUp/SignUp";
 import SignIn from "../../views/auth/signIn/SignIn";
 
 import { Page } from "../Page";
-import Logo from "../../components/logo/Logo";
+import Logo from "../../components/logo/Logo.js";
 import views from "../../views/views";
 
 const Authenticate = () => {
