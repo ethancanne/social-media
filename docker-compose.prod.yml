@@ -14,6 +14,8 @@ services:
     tty: true
     links:
       - api-server-prod
+    labels:
+      kompose.service.type: LoadBalancer
 
   api-server-prod:
     build:
@@ -25,6 +27,8 @@ services:
       - mern-app
     env_file:
       - .env
+    labels:
+      kompose.service.type: LoadBalancer
 
 networks:
   mern-app:
